@@ -1,0 +1,478 @@
+
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import FAQ from "@components/Faq.astro";
+import CTA from "@components/CTA.astro";
+---
+
+<BaseLayout
+  title="Intelligent Biomechanics Lab"
+  description="Skyline Landscaping is a locally trusted company dedicated to transforming outdoor spaces into beautiful, livable environments. With a passion for nature and a commitment to craftsmanship, we specialize in landscaping, hardscaping, and garden design that reflects our clients’ lifestyles and vision."
+>
+
+<!-- ============================================ -->
+<!--                   Banner                     -->
+<!-- ============================================ -->
+
+<div id="banner-2285">
+    <div class="cs-container">
+        <span class="cs-int-title">Tutorials</span>
+        <p class="cs-text">
+        </p>
+    </div>
+    <!--Background Image-->
+    <picture class="cs-background">
+        <!--Mobile Image-->
+        <source media="(max-width: 600px)" srcset="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222">
+        <!--Tablet and above Image-->
+        <source media="(min-width: 601px)" srcset="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222">
+        <img decoding="async" src="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222" alt="construction" width="1280" height="568" aria-hidden="true">
+    </picture>
+</div>
+
+<!-- ============================================ -->
+<!--                  Services                    -->
+<!-- ============================================ -->
+
+<section id="services-2131">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">Tutorials</span>
+            <h2 class="cs-title">Videos To Provide Guidance</h2>
+        </div>
+        <ul class="cs-card-group">
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <h3 class="cs-h3">How To Clean The Biobath And Set Up The Bath</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/noelia.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/noelia.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/noelia.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <h3 class="cs-h3">How To Protect The Clamps</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/aiden.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/aiden.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/aiden.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <h3 class="cs-h3">How To End The Experiment And Clean The Tools</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/curtis.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/curtis.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/curtis.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <h3 class="cs-h3">How To Complete The Entire Experiment</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/chase.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/chase.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/chase.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+                                
+                                
+                                
+                                                           
+<CTA/>
+</BaseLayout>
+
+
+
+
+
+<style lang="less">
+/*-- -------------------------- -->
+<---          Banner            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #banner-2285{
+        padding: var(--sectionPadding);
+        /* 190px - 280px */
+        padding-top: clamp(11.875rem, 25vw, 17.5rem);
+        padding-bottom: (0/16rem);
+        /* clips the line from causing overflow issues for going off screen */
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            text-align: center;
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .cs-int-title {
+            /* 39px - 61px */
+            font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: inherit;
+            margin: 0 0 (16/16rem);
+            color: var(--bodyTextColorWhite);
+            position: relative;
+        }
+
+        .cs-text {
+            text-align: left;
+            /* 60px - 120px */
+            margin-bottom: clamp(3.75rem, 7vw, 7.5rem);
+            max-width: (700/16rem);
+            color: var(--bodyTextColorWhite);
+        }
+
+        .cs-breadcrumbs {
+            padding: clamp(1rem, 3vw, 1.5rem) 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: '';
+                width: 200vw;
+                height: 100%;
+                background-color: #fff;
+                opacity: .12;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+
+            &:after {
+                content: '';
+                width: 200vw;
+                height: 100%;
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+        }
+
+        .cs-link {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            text-decoration: none;
+            color: var(--bodyTextColorWhite);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:last-of-type {
+                /* remove the chevron on the last list item */
+                &::after {
+                    display: none;
+                }
+            }
+
+            &:after {
+                /* chevron */
+                content: "";
+                width: (1/16rem);
+                height: (24/16rem);
+                margin: 0 (16/16rem);
+                background-color: #88898B;
+                position: relative;
+                display: block;
+            }
+
+            &.cs-active {
+                color: var(--primary);
+            }
+        }
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+
+            &:before {
+                /* gradient overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0.72;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                /* Makes img tag act as a background image */
+                object-fit: cover;
+                z-index: -1;
+            }
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          Services          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #services-2131 {
+        padding: var(--sectionPadding);
+        background-color: #FDFAF8;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at tablet */
+            max-width: (704/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: center;
+        }
+
+        .cs-title {
+            margin: 0;
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 16px - 20px */
+            gap: clamp(1rem, 1.5vw, 1.25rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            width: 100%;
+            height: (280/16rem);
+            margin: 0;
+            /* clips the image corners */
+            overflow: hidden;
+            grid-column: span 12;
+            grid-row: span 1;
+            gap: (8/16rem);
+            position: relative;
+
+            &:hover,
+            &:focus-within {
+                .cs-h3 {
+                    transform: translateY(0);
+                }
+
+                .cs-background {
+                    &:after {
+                        opacity: .6;
+                    }
+
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        .cs-link {
+            text-decoration: none;
+            height: 100%;
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            padding: (16/16rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-h3 {
+            /* 20px - 25px */
+            font-size: clamp(1.25rem, 2vw, 1.5625rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: center;
+            margin: 0;
+            padding: (16/16rem) (20/16rem);
+            color: var(--bodyTextColorWhite);
+            border: 1px solid var(--bodyTextColorWhite);
+            /* transform down the same amount as the flex gap */
+            transform: translateY(0.75rem);
+            transition: transform 0.3s, color 0.3s, background-color .3s;
+
+            &:hover {
+                background-color: #fff;
+                color: var(--headerColor);
+            }
+        }
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+
+            &:before {
+                /* gradient overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%);
+                opacity: 1;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -2;
+                transition: height 0.3s;
+            }
+
+            &:after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                opacity: 0;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                transition: opacity 0.3s;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                /* Makes img tag act as a background image */
+                object-fit: cover;
+                position: absolute;
+                z-index: -3;
+                transition: transform 0.6s;
+            }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #services-2131 {
+        .cs-container {
+            max-width: (1280/16rem);
+        }
+
+        .cs-card-group {
+            max-width: 100%;
+            grid-template-rows: 1fr;
+        }
+
+        .cs-item {
+            /* 240px - 440px */
+            min-height: clamp(15rem, 30vw, 27.5rem);
+            grid-column: span 4;
+
+            &:nth-of-type(4),
+            &:nth-of-type(5) {
+                grid-column: span 6;
+            }
+        }
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+  #services-2131 {
+    .cs-container {
+      max-width: (1840/16rem);
+    }
+
+    .cs-card-group {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cs-item {
+      grid-column: span 1;   // each item just takes one column
+    }
+
+    .cs-item:nth-of-type(4),
+    .cs-item:nth-of-type(5) {
+      grid-column: span 1;   // override the tablet span 6
+    }
+  }
+}
+                                
+                                
+                                
+                                
+</style>

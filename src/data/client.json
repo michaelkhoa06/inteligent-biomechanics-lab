@@ -1,0 +1,16 @@
+{
+	"name": "Intelligent Biomechanics Lab",
+	"email": "info@skylinetechnologies.net",
+	"phoneForTel": "404-123-4567",
+	"title": "Intelligent Biomechanics Lab",
+	"phoneFormatted": "404-123-4567",
+	"address": {
+		"lineOne": "First Address Line",
+		"lineTwo": "Second Address Line",
+		"city": "Atlanta",
+		"state": "GA",
+		"zip": "30024",
+		"mapLink": "https://goo.gl/maps/UAQn4vuGDiwv7DV39"
+	},
+	"domain": "www.intelligentbiomechanicslab.net"
+}

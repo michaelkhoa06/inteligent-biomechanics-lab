@@ -1,0 +1,491 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import FAQ from "@components/Faq.astro";
+import CTA from "@components/CTA.astro";
+---
+
+<BaseLayout
+  title="Intelligent Biomechanics Lab"
+  description="Skyline Landscaping is a locally trusted company dedicated to transforming outdoor spaces into beautiful, livable environments. With a passion for nature and a commitment to craftsmanship, we specialize in landscaping, hardscaping, and garden design that reflects our clients’ lifestyles and vision."
+>
+
+<!-- ============================================ -->
+<!--                   Banner                     -->
+<!-- ============================================ -->
+
+<div id="banner-2285">
+    <div class="cs-container">
+        <span class="cs-int-title">Achievements</span>
+        <p class="cs-text">
+            
+        </p>
+    </div>
+    <!--Background Image-->
+    <picture class="cs-background">
+        <!--Mobile Image-->
+        <source media="(max-width: 600px)" srcset="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222">
+        <!--Tablet and above Image-->
+        <source media="(min-width: 601px)" srcset="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222">
+        <img decoding="async" src="https://ik.imagekit.io/rkthvltxq/Landscaping/pexels-mali-68470.jpg?updatedAt=1750728044222" alt="construction" width="1280" height="568" aria-hidden="true">
+    </picture>
+</div>
+
+<!-- ============================================ -->
+<!--                    Blog                      -->
+<!-- ============================================ -->
+
+<section id="blog-1289">
+    <div class="cs-container">
+        <div class="cs-content">
+            <div class="cs-flex-group">
+                <span class="cs-topper">Achievements</span>
+                <h2 class="cs-title">Intelligent Biomechanics Lab's Accomplishments</h2>
+            </div>
+            <p class="cs-text">
+                From early milestones to ambitious long-term goals, this page highlights how the Intelligent Biomechanics Lab is pushing GI biomechanics and digital twin research forward.
+            </p>
+        </div>      
+        <ul class="cs-card-group">
+            <li class="cs-item cs-highlight">
+                <a href="" class="cs-link">
+                    <picture class="cs-picture">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/achievements/achievements1.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/achievements/achievements1.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/achievements/achievements1.png" alt="building" width="270" height="200">
+                    </picture>
+                    <div class="cs-flex">
+                        <span class="cs-date">July 2025</span>
+                        <h3 class="cs-h3">Full GI Tract Digital Twin Platform</h3>
+                        <p class="cs-item-text">
+                            Our long-term vision is to develop a comprehensive digital twin platform for the entire GI tract, from the esophagus to the intestines, that couples mechanical behavior, electrical activity, and brain–gut interactions. This platform will support virtual testing of therapies and personalized treatment planning for complex GI disorders.
+                    </div>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <picture class="cs-picture">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/achievements/achievements2.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/achievements/achievements2.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/achievements/achievements2.png" alt="building" width="270" height="200">
+                    </picture>
+                    <span class="cs-date">July 2, 2025</span>
+                    <h3 class="cs-h3">Prototype Machine Learning Model for Motility Pattern Classification</h3>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <picture class="cs-picture">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/achievements/achievements3.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/achievements/achievements3.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/achievements/achievements3.png" alt="building" width="270" height="200">
+                    </picture>
+                    <span class="cs-date">June 24, 2025</span>
+                    <h3 class="cs-h3">First Internal Library of Patient-Specific Stomach Models</h3>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="" class="cs-link">
+                    <picture class="cs-picture">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/achievements/achievements4.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/achievements/achievements4.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/achievements/achievements4.png" alt="building" width="270" height="200">
+                    </picture>
+                    <span class="cs-date">June 12, 2025</span>
+                    <h3 class="cs-h3">Automated Pipeline for GI Tissue Mechanics</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+                                                                                                                      
+<CTA/>
+</BaseLayout>
+
+
+
+
+
+<style lang="less">
+
+/*-- -------------------------- -->
+<---          Banner            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #banner-2285{
+        padding: var(--sectionPadding);
+        /* 190px - 280px */
+        padding-top: clamp(11.875rem, 25vw, 17.5rem);
+        padding-bottom: (0/16rem);
+        /* clips the line from causing overflow issues for going off screen */
+
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            text-align: center;
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .cs-int-title {
+            /* 39px - 61px */
+            font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: inherit;
+            margin: 0 0 (16/16rem);
+            color: var(--bodyTextColorWhite);
+            position: relative;
+        }
+
+        .cs-text {
+            text-align: left;
+            /* 60px - 120px */
+            margin-bottom: clamp(3.75rem, 7vw, 7.5rem);
+            max-width: (700/16rem);
+            color: var(--bodyTextColorWhite);
+        }
+
+        .cs-breadcrumbs {
+            padding: clamp(1rem, 3vw, 1.5rem) 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: '';
+                width: 200vw;
+                height: 100%;
+                background-color: #fff;
+                opacity: .12;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+
+            &:after {
+                content: '';
+                width: 200vw;
+                height: 100%;
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+        }
+
+        .cs-link {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            text-decoration: none;
+            color: var(--bodyTextColorWhite);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:last-of-type {
+                /* remove the chevron on the last list item */
+                &::after {
+                    display: none;
+                }
+            }
+
+            &:after {
+                /* chevron */
+                content: "";
+                width: (1/16rem);
+                height: (24/16rem);
+                margin: 0 (16/16rem);
+                background-color: #88898B;
+                position: relative;
+                display: block;
+            }
+
+            &.cs-active {
+                color: var(--primary);
+            }
+        }
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+
+            &:before {
+                /* gradient overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0.72;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                /* Makes img tag act as a background image */
+                object-fit: cover;
+                z-index: -1;
+            }
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---           Blog             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #blog-1289 {
+        padding: var(--sectionPadding);
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at tablet */
+            max-width: (550/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: flex-start;
+        }
+
+        .cs-flex-group {
+            /* prevents flexbox from squishing it */
+            flex: none;
+        }
+
+        .cs-color {
+            color: var(--primary);
+        }
+        .cs-card-group {
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 16px - 20px */
+            gap: clamp(1rem, 2vw, 1.25rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            grid-column: span 12;
+
+            &:hover {
+                .cs-picture {
+                    &:before {
+                        opacity: 0.7;
+                    }
+
+                    img {
+                        transform: scale(1.2);
+                        filter: grayscale(1);
+                    }
+                }
+
+                .cs-h3 {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .cs-highlight {
+            .cs-flex {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: (16/16rem);
+            }
+        }
+
+        .cs-link {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: (16/16rem);
+        }
+
+        .cs-picture {
+            width: 100%;
+            /* 200px - 270px */
+            height: clamp(12.5rem, 25vw, 16.875rem);
+            border-radius: (16/16rem);
+            /* clips the corners of the img tag */
+            overflow: hidden;
+            display: block;
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0;
+                top: 0;
+                left: 0;
+                z-index: 2;
+                transition: opacity 0.3s;
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                transition:
+                    transform 0.65s,
+                    filter 0.4s;
+            }
+        }
+
+        .cs-date {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            text-align: left;
+            font-weight: 700;
+            margin: 0;
+            color: var(--bodyTextColorRed);
+            display: block;
+        }
+
+        .cs-date1 {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            text-align: left;
+            font-weight: 700;
+            margin: 0;
+            color: var(--bodyTextColor);
+            display: block;
+        }
+
+        .cs-h3 {
+            /* 20px -25px */
+            font-size: clamp(1.25rem, 2.2vw, 1.5625rem);
+            line-height: 1.2em;
+            font-weight: 700;
+            margin: 0;
+            color: var(--headerColor);
+        }
+
+        .cs-item-text {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.5em;
+            text-align: inherit;
+            margin: 0;
+            color: var(--bodyTextColor);
+            display: block;
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #blog-1289 {
+        .cs-container {
+            max-width: (1280/16rem);
+        }
+
+        .cs-content {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: (48/16rem);
+        }
+
+        .cs-title {
+            margin: 0;
+        }
+
+        .cs-flex-group {
+            width: 50%;
+        }
+
+        .cs-item {
+            grid-column: span 4;
+        }
+
+        .cs-highlight {
+            grid-column: span 12;
+            .cs-link {
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .cs-flex {
+                align-self: center;
+            }
+
+            .cs-picture {
+                /* 300px - 400px */
+                min-height: clamp(18.75rem, 35vw, 25rem);
+                height: auto;
+                width: 50%;
+                /* prevents flexbox from squishing it */
+                flex: none;
+            }
+
+            .cs-h3 {
+                /* 25px - 39px */
+                font-size: clamp(1.5625rem, 3vw, 2.4375rem);
+            }
+        }
+    }
+}
+                                
+</style>

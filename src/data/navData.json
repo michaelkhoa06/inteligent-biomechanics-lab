@@ -1,0 +1,22 @@
+[
+  {
+    "key": "Introduction",
+    "url": "/",
+    "children": []
+  },
+  {
+    "key": "Achievements",
+    "url": "/achievements/",
+    "children": []
+  },
+    {
+    "key": "Members",
+    "url": "/members/",
+    "children": []
+  },
+  {
+    "key": "Tutorials",
+    "url": "/tutorials/",
+    "children": []     
+  }
+]

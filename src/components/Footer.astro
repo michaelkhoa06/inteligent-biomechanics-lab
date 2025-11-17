@@ -1,0 +1,274 @@
+---
+import client from "@data/client.json";
+import navData from "@data/navData.json";
+import { getCurrentYear } from "@js/utils"
+
+const currentYear = getCurrentYear()
+---
+
+<!-- ============================================ -->
+<!--                  Footer                      -->
+<!-- ============================================ -->
+
+<footer id="cs-footer-271">
+    <div class="cs-container">
+        <!-- Logo Group -->
+        <div class="cs-logo-group">
+            <a aria-label="go back to home" class="cs-logo" href="">
+                <!-- remove the light class if dark mdoe not needed-->
+                <img src="/assets/bioheart.png" alt="logo" width="100" height="100" aria-hidden="true" decoding="async">
+            </a>
+            <p class="cs-text">
+                Intelligent Biomechanics Lab — Advancing GI health through biomechanics, medical imaging, and patient-specific digital twins.
+            </p>
+        </div>
+        <!-- Address Info -->
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header">Address</span>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="">Engineering Lab Building, 1100 1100 <br>Marietta, GA 30060</a>
+            </li>
+        </ul>
+        <!-- Contact Info -->
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header">Contact</span>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="tel: 123-456-7890"></a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href="mailto:info@codestitch.com">lshi@kennesaw.edu </a>
+            </li>
+        </ul>
+        <!-- Social and Credit -->
+        <div class="cs-bottom">
+            <span class="cs-copyright">© 2025 Copyright</span>
+            <div class="cs-social">
+                <a class="cs-social-link" aria-label="visit google profile" href="">
+                    <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Social/google.svg" alt="google" width="11" height="11">
+                </a>
+                <a class="cs-social-link" aria-label="visit facebook profile" href="">
+                    <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Social/Facebook.svg" alt="facebook" width="6" height="11">
+                </a>
+                <a class="cs-social-link" aria-label="visit instagram profile" href="">
+                    <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Social/instagram.svg" alt="instagram" width="11" height="11">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+                                
+
+<style lang="less">
+
+
+/*-- -------------------------- -->
+<---           Footer           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #cs-footer-271 {
+        padding: var(--sectionPadding);
+        background-color: #000000;
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        .cs-logo-group {
+            /* takes up all the space, lets the other ul's wrap below it */
+            width: 100%;
+            position: relative;
+        }
+
+        .cs-logo {
+            /* 210px - 240px */
+            width: clamp(13.125rem, 8vw, 15rem);
+            height: auto;
+            display: block;
+            /* 28px - 44px */
+            margin-bottom: clamp(1.75rem, 4.17vw, 2.75rem);
+        }
+
+        .cs-logo-img {
+            width: 100%;
+            height: auto;
+
+            &.dark {
+                display: none;
+            }
+        }
+        .cs-nav {
+            padding: 0;
+            padding-left: (16/16rem);
+            margin: 0;
+            /* 32px - 40px */
+            margin-bottom: clamp(2rem, 5.3vw, 2.5rem);
+        }
+
+        .cs-nav-li {
+            list-style: none;
+            line-height: 1.5em;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .cs-header {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            font-weight: 700;
+            margin-bottom: (20/16rem);
+            color: var(--bodyFooterColor);
+            position: relative;
+            display: block;
+        }
+
+        .cs-nav-link {
+            font-size: (16/16rem);
+            text-decoration: none;
+            line-height: 1.5em;
+            color: var(--bodyFooterColor);
+            position: relative;
+
+            &:before {
+                /* underline */
+                content: "";
+                width: 0%;
+                height: (2/16rem);
+                /* current color of the parent */
+                background: currentColor;
+                opacity: 1;
+                position: absolute;
+                display: block;
+                bottom: (-2/16rem);
+                left: 0;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-bottom {
+            width: 100%;
+            position: relative;
+            padding-left: (16/16rem);
+        }
+
+        .cs-copyright {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            color: #746f95;
+            display: block;
+        }
+
+        .cs-social {
+            display: inline-flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: (12/16rem);
+            position: absolute;
+            right: (16/16rem);
+            bottom: 0;
+        }
+
+        .cs-social-link {
+            width: (24/16rem);
+            height: (24/16rem);
+            background-color: #4e4b66;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            transition:
+                transform 0.3s,
+                background-color 0.3s;
+
+            &:hover {
+                background-color: var(--primary);
+                transform: translateY(-0.1875rem);
+            }
+        }
+
+        .cs-social-img {
+            height: (13/16rem);
+            width: auto;
+            display: block;
+        }
+    }
+}
+
+/* Inbetween - 600px */
+@media only screen and (min-width: 37.5rem) {
+    #cs-footer-271 {
+        .cs-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            /* 48px - 60px */
+            column-gap: clamp(3rem, 5.9vw, 3.75rem);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #cs-footer-271 {
+        .cs-logo-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* 20px - 60px */
+            margin-bottom: clamp(1.25rem, 4vw, 3.75rem);
+        }
+
+        .cs-logo {
+            margin: 0;
+        }
+
+        .cs-text {
+            text-align: right;
+            width: 50%;
+            max-width: (521/16rem);
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .cs-nav {
+            padding: 0;
+        }
+
+        .cs-bottom {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-social {
+            flex-direction: row;
+            position: relative;
+            /* reset these positions */
+            bottom: auto;
+            right: auto;
+        }
+    }
+}
+                                
+
+
+
+</style>
