@@ -98,14 +98,15 @@
 <!-- ============================================ -->
  
 <script is:inline>
-const faqItems = Array.from(document.querySelectorAll('.cs-faq-item'));
-        for (const item of faqItems) {
-            const onClick = () => {
-            item.classList.toggle('active')
-        }
-        item.addEventListener('click', onClick)
-        }
-                                
+  if (!window.__faqClickBound) {
+    window.__faqClickBound = true;
+
+    document.addEventListener("click", (e) => {
+      const item = e.target.closest(".cs-faq-item");
+      if (!item) return;
+      item.classList.toggle("active");
+    });
+  }
 </script>
 
 
