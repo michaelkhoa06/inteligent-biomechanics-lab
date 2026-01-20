@@ -632,39 +632,6 @@ import FAQ from "@components/Faq.astro";
             grid-column: span 12;
             position: relative;
             z-index: 1;
-
-            &:hover {
-                .cs-picture {
-                    &::after {
-                        opacity: 1;
-                    }
-
-                    img {
-                        transform: scale(1.2);
-                    }
-                }
-
-                .cs-info {
-                    background-color: var(--primary);
-                }
-
-                .cs-h3,
-                .cs-item-text {
-                    color: #ffffff;
-                }
-
-                .cs-number {
-                    opacity: 1;
-                    /* 20px - 32px */
-                    top: clamp(1.25rem, 2.3vw, 2rem);
-                }
-
-                .cs-arrow {
-                    opacity: 0.12;
-                    bottom: 50%;
-                    transform: translateY(50%);
-                }
-            }
         }
 
         .cs-link {
