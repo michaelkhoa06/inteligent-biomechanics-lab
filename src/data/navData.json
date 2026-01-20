@@ -18,5 +18,10 @@
     "key": "Tutorials",
     "url": "/tutorials/",
     "children": []     
+  },
+  {
+    "key": "Academic List",
+    "url": "/academic/",
+    "children": []     
   }
 ]
