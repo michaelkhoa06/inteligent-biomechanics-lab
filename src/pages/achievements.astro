@@ -124,7 +124,7 @@ import CTA from "@components/CTA.astro";
         <div class="cs-funding-grid">
           <article class="cs-fund-card">
             <div class="cs-fund-meta">
-              <span class="cs-badge cs-badge-nih">NIH R15</span>
+              <img class="cs-fund-logo" src="/assets/images/funding/NIH.svg" alt="NIH logo" loading="lazy" decoding="async" />
             </div>
             <h3 class="cs-fund-title">
               Integrating Generative AI with Biomechanics Modeling to Advance Ventricular Disease Diagnosis and
@@ -134,7 +134,7 @@ import CTA from "@components/CTA.astro";
 
           <article class="cs-fund-card">
             <div class="cs-fund-meta">
-              <span class="cs-badge cs-badge-nsf">NSF</span>
+              <img class="cs-fund-logo" src="/assets/images/funding/NSF.svg" alt="NSF logo" loading="lazy" decoding="async" />
             </div>
             <h3 class="cs-fund-title">
               ERI: Multiscale Electromechanical Modeling of Stomach Motility and Structure for Advancing Digital Twin
@@ -144,7 +144,7 @@ import CTA from "@components/CTA.astro";
 
           <article class="cs-fund-card">
             <div class="cs-fund-meta">
-              <span class="cs-badge cs-badge-ksu">KSU</span>
+              <img class="cs-fund-logo" src="/assets/images/funding/KSU.svg" alt="Kennesaw State University logo" loading="lazy" decoding="async" />
             </div>
             <h3 class="cs-fund-title">
               A General Method for Fabrication of Hierarchical Structures for Flexible Energy Storage Materials Using
@@ -651,6 +651,19 @@ import CTA from "@components/CTA.astro";
         justify-content: space-between;
         flex-wrap: wrap;
       }
+      .cs-fund-meta {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .cs-fund-logo {
+          height: 55px;      /* tweak: 28–44px */
+          width: auto;
+          object-fit: contain;
+          display: block;
+        }
 
       .cs-title {
         font-size: clamp(1.625rem, 2.5vw, 2.25rem);
