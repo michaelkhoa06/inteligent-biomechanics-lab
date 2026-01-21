@@ -22,7 +22,6 @@ import { Icon } from 'astro-icon/components';
                     <span class="cs-line cs-line3" aria-hidden="true"></span>
                 </div>
             </button>
-            <!-- We need a wrapper div so we can set a fixed height on the cs-ul in case the nav list gets too long from too many dropdowns being opened and needs to have an overflow scroll. This wrapper acts as the background so it can go the full height of the screen and not cut off any overflowing nav items while the cs-ul stops short of the bottom of the screen, which keeps all nav items in view no matter how mnay there are-->
             <div class="cs-ul-wrapper">
                 <ul id="cs-expanded-ul" class="cs-ul">
                   {navData.map((entry) => (
@@ -511,8 +510,6 @@ body,
             visibility: hidden;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 10px 16px;
             border-bottom: 5px solid var(--primary);
-            /* if you have 8 or more links in your dropdown nav, uncomment the columns property to make the list into 2 even columns. Change it to 3 or 4 if you need extra columns. Then remove the transition delays on the cs-drop-li so they don't have weird scattered animations */
-            // columns: 2;
             position: absolute;
             top: 99.9%;
             z-index: -100;

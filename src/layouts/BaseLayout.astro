@@ -7,7 +7,6 @@ import "@styles/root.less";
 const { description, title} = Astro.props;
 
 ---
-<!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
 <html lang="en">
         <head>
             <!-- View Transitions support -->
@@ -37,13 +36,6 @@ const { description, title} = Astro.props;
             <meta name="msapplication-TileColor" content="#da532c">
             <meta name="theme-color" content="#ffffff">
          
-            <!--For home page, use service keywords for the title, including location for SEO.
-            Other pages should just include the page name.
-            
-            EXAMPLE:
-            Home page - House Painting Contractors | Painters and Co. | TestCity, WA
-            About Page - About us | Painters and Co.
-            -->
         <title>
             {Astro.url.pathname === "/"
               ? "Intelligent Biomechanics Lab | Kennesaw State University"
@@ -82,11 +74,10 @@ const { description, title} = Astro.props;
       // default to the light theme
       let theme = "light";
   
-      // check localStorage for a saved 'theme' variable. if it's there, the user has visited before, so apply the necessary theme choices
       if (localStorage.getItem("theme")) {
         theme = localStorage.getItem("theme");
       }
-      // if it's not there, check to see if the user has applied dark mode preferences themselves in the browser
+
       else if (
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -94,11 +85,10 @@ const { description, title} = Astro.props;
         theme = "dark";
       }
   
-      // if there is no preference set, the default of light will be used. apply accordingly
       theme === "dark" ? enableDarkMode() : disableDarkMode();
     }
   
     setTheme();
   
-    document.addEventListener("astro:after-swap", setTheme); // For View Transitions purposes - astro:after-swap ensures that the theme is kept after navigating to a new page.
+    document.addEventListener("astro:after-swap", setTheme); 
   </script>
