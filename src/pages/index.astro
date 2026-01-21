@@ -19,7 +19,7 @@ import FAQ from "@components/Faq.astro";
             <span class="cs-topper">Welcome to the...</span>
             <h1 class="cs-title">Intelligent Biomechanics Lab</h1>
             <p class="cs-text">
-                Welcome to the Intelligent Biomechanics Lab, where biomechanics meets artificial intelligence.
+                The Intelligent Biomechanics Lab, where biomechanics meets artificial intelligence.
             </p>
             <a href="/contact" class="cs-button-solid cs-button1">Learn more from us</a>
         </div>
@@ -389,13 +389,24 @@ import FAQ from "@components/Faq.astro";
 
         .cs-title {
             /* 39px - 61px */
-            font-size: clamp(2.4375rem, 5vw, 3.8125rem);
+            position: relative;
+            top: -130px;
+            font-size: clamp(3rem, 6vw, 5rem);
             max-width: 30ch;
             color: var(--bodyTextColorWhite);
+        }
+        
+        .cs-topper {
+            font-size: clamp(1rem, 1.6vw, 1.4rem);
+            position: relative;
+            top: -130px;
+            color: var(--csTopperColor);
         }
 
         .cs-text {
             /* 16px - 20px */
+            position: relative;
+            top: 50px;
             font-size: clamp(1rem, 2vw, 1.25rem);
             max-width: 55ch;
             margin-bottom: (32/16rem);
@@ -404,6 +415,8 @@ import FAQ from "@components/Faq.astro";
         }
 
         .cs-button-solid {
+            position: relative;
+            top: 50px;
             font-size: (16/16rem);
             font-weight: 700;
             /* 46px - 56px */
