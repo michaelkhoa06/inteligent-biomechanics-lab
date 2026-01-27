@@ -50,12 +50,12 @@ import FAQ from "@components/Faq.astro";
             </li>
         </ul>
     </div>
-    <!-- Background Image -->
-    <picture class="cs-background">
-        <source media="(max-width: 600px)" srcset="https://images.pexels.com/videos/3129671/free-video-3129671.jpg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200%22">
-        <source media="(min-width: 600px)" srcset="https://images.pexels.com/videos/3129671/free-video-3129671.jpg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200%22">
-        <img loading="lazy" decoding="async" src="https://images.pexels.com/videos/3129671/free-video-3129671.jpg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200%22" alt="group photo" width="1920" height="1267" aria-hidden="true">
-    </picture>
+    <!-- Background Video -->
+    <div class="cs-background" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="metadata" poster="/assets/images/index/index1.png">
+        <source src="/assets/videos/hero.mp4" type="video/mp4" />
+      </video>
+    </div>
 </section>
                                 
                                                         
@@ -516,38 +516,36 @@ import FAQ from "@components/Faq.astro";
         }
 
         .cs-background {
+          width: 100%;
+          height: 100%;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        
+          &:before {
+            content: "";
             width: 100%;
             height: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
+            pointer-events: none;
+            opacity: 1;
             display: block;
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1;
-
-            &:before {
-                /* Overlay */
-                content: "";
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
-                /* prevents the cursor from interacting with it */
-                pointer-events: none;
-                opacity: 1;
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
+            z-index: 1;
+          }
+      
+          video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
         }
     }
 }
