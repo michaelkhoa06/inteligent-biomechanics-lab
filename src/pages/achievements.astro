@@ -238,7 +238,18 @@ import CTA from "@components/CTA.astro";
 
 
 <style lang="less">
+/* Push page content below a fixed navbar */
+@media only screen and (min-width: 0rem) {
+  :global(:root) {
+    /* Adjust this to match your navbar height */
+    --navHeight: 5rem; /* try 4.5rem–6rem */
+  }
 
+  /* Put space before the first content section */
+  #funding-2285 {
+    margin-top: var(--navHeight);
+  }
+}
 
 /*-- -------------------------- -->
 <---           Blog             -->
