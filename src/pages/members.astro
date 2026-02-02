@@ -679,29 +679,26 @@ import CTA from "@components/CTA.astro";
         }
 
         .cs-picture {
-          width: 100%;
-          display: block;
-          position: relative;
-          z-index: 1;
-          overflow: hidden;
-        
-          // keep the intended ratio (prevent LESS from doing division)
-          aspect-ratio: ~"328 / 280";
-        
-          // make the height responsive instead of forcing 300px always
-          min-height: clamp(14rem, 60vw, 18.75rem); // ~224px to 300px
-        
-          img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            transition: transform 0.7s;
-          }
+            min-height: (300/16rem);
+            display: block;
+            position: relative;
+            z-index: 1;
+            /* removed at tablet */
+            aspect-ratio: (328/280);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* makes sure the top of the image is at the top of the parent, heads won't get cut off this way */
+                object-position: top;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: transform 0.7s;
+            }
         }
 
         .cs-info {
