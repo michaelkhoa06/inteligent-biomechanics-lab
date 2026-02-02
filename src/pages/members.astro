@@ -680,12 +680,12 @@ import CTA from "@components/CTA.astro";
 
         .cs-picture {
             width: 100%;
-            min-height: (300/16rem);
+            min-height: clamp(12rem, 55vw, 16rem); // ~192px to 256px
             display: block;
             position: relative;
             z-index: 1;
             /* removed at tablet */
-            aspect-ratio: (328/280);
+            aspect-ratio: ~"328 / 280";
 
             img {
                 width: 100%;
