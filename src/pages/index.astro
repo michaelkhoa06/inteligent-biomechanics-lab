@@ -1062,11 +1062,14 @@ import FAQ from "@components/Faq.astro";
         }
 
         .cs-picture1 {
-            width: 100%;
-            /* -133px to -165px */
-            height: calc(100% + clamp(8.3125rem, 13vw, 10.3125rem));
-            top: 0;
-        }
+    width: (381/16em);
+    height: (381/16em);
+    border-right: (14/16em) solid #FEF5F4;
+    border-bottom: (14/16em) solid #FEF5F4;
+    top: 0;
+    bottom: (340/16em);   /* ← increased from 281 */
+    left: 0;
+}
 
         .cs-picture3 {
             width: 56%;
