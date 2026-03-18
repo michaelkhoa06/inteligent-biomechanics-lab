@@ -994,11 +994,11 @@ import FAQ from "@components/Faq.astro";
         }
 
         .cs-picture1 {
-            width: (381/16em);
-            height: (381/16em);
+            width: (340/16em);   /* ← shrink slightly from 381 */
+            height: (340/16em);  /* ← shrink slightly from 381 */
             border-right: (14/16em) solid #FEF5F4;
             border-bottom: (14/16em) solid #FEF5F4;
-            top: (-30/16em);  /* ← pull it upward */
+            top: 0;
             bottom: (281/16em);
             left: 0;
         }
@@ -1008,6 +1008,7 @@ import FAQ from "@components/Faq.astro";
             height: (326/16em);
             right: 0;
             bottom: 0;
+            z-index: 1;
         }
 
         .cs-picture3 {
