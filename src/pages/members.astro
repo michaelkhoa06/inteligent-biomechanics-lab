@@ -38,17 +38,9 @@ import CTA from "@components/CTA.astro";
                 <div class="cs-info">
                     <span class="cs-name">Dr. Shi</span>
                     <span class="cs-job">Professor</span>
-                    <button class="cs-bio-button js-open-bio" type="button">
-                        About
-                    </button>
-
-                    <div class="cs-member-bio" hidden>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                    </div>
+                    <a class="cs-bio-button" href="/members/shi">
+                        View Profile
+                    </a>
                 </div>
             </li>
             <li class="cs-item">
@@ -94,17 +86,9 @@ import CTA from "@components/CTA.astro";
                 <div class="cs-info">
                     <span class="cs-name">Noelia</span>
                     <span class="cs-job">Researcher</span>
-                    <button class="cs-bio-button js-open-bio" type="button">
-                        About
-                    </button>
-
-                    <div class="cs-member-bio" hidden>
-                        <p>Career Goals: Gastroenterologist.</p>
-                        <p>Hobbies: Swimming and TV Shows</p>
-                        <p>Position in the Lab: Undergraduate Researcher.</p>
-                        <p>Place of Origin: Puerto Rico</p>
-                        <p>Languages: English</p>
-                    </div>
+                    <a class="cs-bio-button" href="/members/shi">
+                        View Profile
+                    </a>
                 </div>
             </li>
             <li class="cs-item">
@@ -451,7 +435,8 @@ import CTA from "@components/CTA.astro";
 /* Mobile */
 @media only screen and (min-width: 0rem) {
     #meet-team-1435 {
-        padding: var(--sectionPadding);
+        padding-top: 8rem;
+        padding-bottom: var(--sectionPadding);
 
         .cs-container {
             width: 100%;
@@ -556,6 +541,7 @@ import CTA from "@components/CTA.astro";
             color: var(--headerColor);
             cursor: pointer;
             transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            text-decoration: none;
 
             &:hover {
                 background-color: var(--primary);
