@@ -2,25 +2,25 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
-  fullName: "Dr. Shi",
-  role: "Professor",
-  image: "/assets/images/members/shi.png",
-  email: "drshi@example.com",
+  fullName: "Curtis Ledford",
+  role: "Undergraduate Researcher",
+  image: "/assets/images/members/curtis.png",
+  email: "undergraduate@example.com",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "Dr. Shi leads the Intelligent Biomechanics Lab and mentors students in interdisciplinary biomechanics research. His work focuses on gastrointestinal mechanics, computational modeling, and digital twin development.",
+    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
 
   introduction: 
-    "Dr. Shi leads the Intelligent Biomechanics Lab and mentors students in interdisciplinary biomechanics research. His work focuses on gastrointestinal mechanics, computational modeling, and digital twin development.",
+    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
 
   academicExperience: [
-    "Ph.D. in [Field] - [University]",
-    "M.S. in [Field] - [University]",
-    "B.S. in [Field] - [University]"
+    "Highschool Diploma - [Some Highschool]",
+    "",
+    ""
   ],
 
   workExperience: [
-    "Professor, Kennesaw State University",
+    "Researcher, Kennesaw State University",
     "Previous Position - Institution / Organization",
     "Previous Position - Institution / Organization"
   ],
@@ -54,10 +54,10 @@ const member = {
 
   locations: {
     birthplace: "Atlanta, Georgia, USA", 
+    highSchool: "Example High School", 
     traveled: [
-      "Seoul, South Korea",
-      "Boston, Massachusetts, USA",
-      "San Diego, California, USA"
+      "",
+      "",
     ]
   }
 };
@@ -165,6 +165,11 @@ const member = {
               </div>
 
               <div class="cs-location-card">
+                <h3>High School</h3>
+                <p>{member.locations.highSchool}</p>
+              </div>
+
+              <div class="cs-location-card">
                 <h3>Places Travelled</h3>
                 <ul class="cs-list">
                   {member.locations.traveled.map((place) => (
@@ -199,10 +204,12 @@ const member = {
             <h3>Hobbies</h3>
             <p>
               <ul class="cs-list">
-                <li>Puerto Rico</li>
-                <li>Florida</li>
+                <li>Cooking</li>
+                <li>Health</li>
+                <li>Aquaponics</li>
+                <li>Music</li>
+                <li>Astronomy</li>
             </ul>
-
         </aside>
       </div>
     </div>
