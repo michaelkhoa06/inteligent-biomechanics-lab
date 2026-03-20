@@ -10,12 +10,15 @@ const member = {
   shortBio:
     "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
 
-  introduction: 
+  introduction:
     "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
 
+  hobbies: [
+    "Volunteering"
+  ],
+
   academicExperience: [
-    "Highschool Diploma - [Some Highschool]",
-    "",
+    "Highschool Diploma - [Some Highschool]"
   ],
 
   workExperience: [
@@ -26,12 +29,10 @@ const member = {
 
   cvSections: [
     {
-      title: "Research Interests",
+      title: "Career Interests",
       items: [
-        "Gastrointestinal biomechanics",
-        "Digital twin development",
-        "Computational modeling",
-        "Experimental biomechanics"
+        "Medicinal Industry",
+        "Physician"
       ]
     },
     {
@@ -52,12 +53,9 @@ const member = {
   ],
 
   locations: {
-    birthplace: "Atlanta, Georgia, USA", 
-    highSchool: "Example High School", 
-    traveled: [
-      "",
-      "",
-    ]
+    birthplace: "Nigeria",
+    highSchool: "Example High School",
+    traveled: []
   }
 };
 ---
@@ -93,6 +91,12 @@ const member = {
               <span class="cs-meta-label">Lab</span>
               <span class="cs-meta-value">{member.department}</span>
             </div>
+
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">{member.role}</span>
+            </div>
+
             <div class="cs-meta-item">
               <span class="cs-meta-label">Email</span>
               <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
@@ -144,9 +148,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>Map & Location Highlights</h2>
-            <p class="cs-map-note">
-              This section is prepared for the requested location points: high school, birthplace, and places traveled.
-            </p>
+            <br>
 
             <div class="cs-map-placeholder">
               <div class="cs-map-placeholder-inner">
@@ -180,34 +182,24 @@ const member = {
           </section>
         </div>
 
-        <aside class="cs-sidebar">
           <div class="cs-sidebar-card">
-            <h3>Quick Facts</h3>
+            
+            <h3>Quick Facts:</h3>
             <ul class="cs-facts-list">
               <li>
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
               <li>
-                <span>Role</span>
-                <strong>{member.role}</strong>
+                <span>Birthplace:</span>
+                <strong>{member.locations.birthplace}</strong>
               </li>
               <li>
-                <span>Lab</span>
-                <strong>{member.department}</strong>
+                <span>Hobbies:</span>
+                <strong>{member.hobbies.join(", ")}</strong>
               </li>
             </ul>
           </div>
-
-          <div class="cs-sidebar-card">
-            <h3>Hobbies</h3>
-            <p>
-              <ul class="cs-list">
-                <li>Volunteering</li>
-            </ul>
-
-        </aside>
-      </div>
     </div>
   </section>
 </BaseLayout>

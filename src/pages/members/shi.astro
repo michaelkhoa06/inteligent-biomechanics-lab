@@ -2,7 +2,7 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
-  fullName: "Dr. Shi",
+  fullName: "Dr. Lei Shi",
   role: "Professor",
   image: "/assets/images/members/shi.png",
   email: "drshi@example.com",
@@ -10,8 +10,12 @@ const member = {
   shortBio:
     "Dr. Shi leads the Intelligent Biomechanics Lab and mentors students in interdisciplinary biomechanics research. His work focuses on gastrointestinal mechanics, computational modeling, and digital twin development.",
 
-  introduction: 
+  introduction:
     "Dr. Shi leads the Intelligent Biomechanics Lab and mentors students in interdisciplinary biomechanics research. His work focuses on gastrointestinal mechanics, computational modeling, and digital twin development.",
+
+  hobbies: [
+    "?"
+  ],
 
   academicExperience: [
     "Ph.D. in [Field] - [University]",
@@ -20,7 +24,7 @@ const member = {
   ],
 
   workExperience: [
-    "Professor, Kennesaw State University",
+    "Researcher, Kennesaw State University",
     "Previous Position - Institution / Organization",
     "Previous Position - Institution / Organization"
   ],
@@ -53,12 +57,9 @@ const member = {
   ],
 
   locations: {
-    birthplace: "Atlanta, Georgia, USA", 
-    traveled: [
-      "Seoul, South Korea",
-      "Boston, Massachusetts, USA",
-      "San Diego, California, USA"
-    ]
+    birthplace: "China",
+    highSchool: "Example High School",
+    traveled: []
   }
 };
 ---
@@ -94,6 +95,12 @@ const member = {
               <span class="cs-meta-label">Lab</span>
               <span class="cs-meta-value">{member.department}</span>
             </div>
+
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">{member.role}</span>
+            </div>
+
             <div class="cs-meta-item">
               <span class="cs-meta-label">Email</span>
               <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
@@ -145,9 +152,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>Map & Location Highlights</h2>
-            <p class="cs-map-note">
-              This section is prepared for the requested location points: high school, birthplace, and places traveled.
-            </p>
+            <br>
 
             <div class="cs-map-placeholder">
               <div class="cs-map-placeholder-inner">
@@ -176,35 +181,24 @@ const member = {
           </section>
         </div>
 
-        <aside class="cs-sidebar">
           <div class="cs-sidebar-card">
-            <h3>Quick Facts</h3>
+            
+            <h3>Quick Facts:</h3>
             <ul class="cs-facts-list">
               <li>
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
               <li>
-                <span>Role</span>
-                <strong>{member.role}</strong>
+                <span>Birthplace:</span>
+                <strong>{member.locations.birthplace}</strong>
               </li>
               <li>
-                <span>Lab</span>
-                <strong>{member.department}</strong>
+                <span>Hobbies:</span>
+                <strong>{member.hobbies.join(", ")}</strong>
               </li>
             </ul>
           </div>
-
-          <div class="cs-sidebar-card">
-            <h3>Hobbies</h3>
-            <p>
-              <ul class="cs-list">
-                <li>Puerto Rico</li>
-                <li>Florida</li>
-            </ul>
-
-        </aside>
-      </div>
     </div>
   </section>
 </BaseLayout>

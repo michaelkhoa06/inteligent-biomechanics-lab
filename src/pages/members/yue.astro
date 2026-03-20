@@ -2,16 +2,25 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
-  fullName: "Yue Li",
-  role: "Graduate Assistant",
+  fullName: "Yue (Lydia) Li",
+  role: "Graduate Researcher, PhD Student",
   image: "/assets/images/members/lydia.png",
-  email: "lydia@example.com",
+  email: "yue@example.com",
   department: "Intelligent Biomechanics Lab",
   shortBio:
     "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
 
-  introduction: 
+  introduction:
     "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
+
+  hobbies: [
+    "Singing",
+    "Dancing",
+    "Hiking",
+    "Roller Skating",
+    "Cooking",
+    "Arranging Flowers"
+  ],
 
   academicExperience: [
     "Ph.D. in [Field] - [University]",
@@ -27,12 +36,10 @@ const member = {
 
   cvSections: [
     {
-      title: "Research Interests",
+      title: "Career Interests",
       items: [
-        "Gastrointestinal biomechanics",
-        "Digital twin development",
-        "Computational modeling",
-        "Experimental biomechanics"
+        "Educator",
+        "Programmer",
       ]
     },
     {
@@ -53,12 +60,9 @@ const member = {
   ],
 
   locations: {
-    birthplace: "Atlanta, Georgia, USA", 
-    traveled: [
-      "Seoul, South Korea",
-      "Boston, Massachusetts, USA",
-      "San Diego, California, USA"
-    ]
+    birthplace: "China",
+    highSchool: "Example High School",
+    traveled: []
   }
 };
 ---
@@ -94,6 +98,12 @@ const member = {
               <span class="cs-meta-label">Lab</span>
               <span class="cs-meta-value">{member.department}</span>
             </div>
+
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">{member.role}</span>
+            </div>
+
             <div class="cs-meta-item">
               <span class="cs-meta-label">Email</span>
               <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
@@ -145,9 +155,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>Map & Location Highlights</h2>
-            <p class="cs-map-note">
-              This section is prepared for the requested location points: high school, birthplace, and places traveled.
-            </p>
+            <br>
 
             <div class="cs-map-placeholder">
               <div class="cs-map-placeholder-inner">
@@ -176,35 +184,24 @@ const member = {
           </section>
         </div>
 
-        <aside class="cs-sidebar">
           <div class="cs-sidebar-card">
-            <h3>Quick Facts</h3>
+            
+            <h3>Quick Facts:</h3>
             <ul class="cs-facts-list">
               <li>
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
               <li>
-                <span>Role</span>
-                <strong>{member.role}</strong>
+                <span>Birthplace:</span>
+                <strong>{member.locations.birthplace}</strong>
               </li>
               <li>
-                <span>Lab</span>
-                <strong>{member.department}</strong>
+                <span>Hobbies:</span>
+                <strong>{member.hobbies.join(", ")}</strong>
               </li>
             </ul>
           </div>
-
-          <div class="cs-sidebar-card">
-            <h3>Hobbies</h3>
-            <p>
-              <ul class="cs-list">
-                <li>Puerto Rico</li>
-                <li>Florida</li>
-            </ul>
-
-        </aside>
-      </div>
     </div>
   </section>
 </BaseLayout>
