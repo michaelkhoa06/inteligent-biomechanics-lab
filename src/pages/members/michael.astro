@@ -21,13 +21,12 @@ const member = {
   ],
 
   academicExperience: [
-    "Highschool Diploma - [Some Highschool]"
+    "Highschool Diploma - Buford Highschool"
   ],
 
   workExperience: [
     "Researcher, Kennesaw State University",
-    "Previous Position - Institution / Organization",
-    "Previous Position - Institution / Organization"
+    "Intern, Skyline Technologies"
   ],
 
   cvSections: [
@@ -40,16 +39,15 @@ const member = {
     {
       title: "Selected Projects",
       items: [
-        "Project title or short description",
-        "Project title or short description",
-        "Project title or short description"
+        "Developing Machine Learning Model",
+        "Developing autonomous Electric Machine"
       ]
     },
     {
       title: "Awards / Honors",
       items: [
-        "Award or recognition",
-        "Award or recognition"
+        "2025 Dean's Honor List",
+        "2025 KSU Freshman Academic Scholar"
       ]
     }
   ],
@@ -116,6 +114,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>Academic Experience</h2>
+            <br>
             <ul class="cs-list">
               {member.academicExperience.map((item) => (
                 <li>{item}</li>
@@ -125,6 +124,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>Work Experience</h2>
+            <br>
             <ul class="cs-list">
               {member.workExperience.map((item) => (
                 <li>{item}</li>
@@ -134,6 +134,7 @@ const member = {
 
           <section class="cs-section-card">
             <h2>CV Overview</h2>
+            <br>
             <div class="cs-cv-grid">
               {member.cvSections.map((section) => (
                 <div class="cs-cv-card">
@@ -147,28 +148,10 @@ const member = {
               ))}
             </div>
           </section>
-
-          <section class="cs-section-card">
-            <h2>Map & Location Highlights</h2>
-            <br>
-
-            <div class="cs-map-placeholder">
-              <div class="cs-map-placeholder-inner">
-                <strong>Map Placeholder</strong>
-                <p>
-                  Placeholder.
-                </p>
-              </div>
-            </div>
-
-            <div class="cs-location-grid">
-            </div>
-          </section>
-        </div>
-
           <div class="cs-sidebar-card">
             
             <h3>Quick Facts:</h3>
+            <br>
             <ul class="cs-facts-list">
               <li>
                 <span>Name</span>
@@ -184,6 +167,7 @@ const member = {
               </li>
             </ul>
           </div>
+          <br>
     </div>
   </section>
 </BaseLayout>
