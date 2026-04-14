@@ -52,22 +52,6 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
             </ul>
         </div>
 
-        <!--
-          NETLIFY FORMS SETUP — three things added to this form:
-          1. `netlify` attribute  →  tells Netlify to intercept the POST and
-             store the submission in your Netlify dashboard
-          2. `netlify-honeypot="bot-field"` + hidden bot-field label  →
-             spam protection; bots fill the hidden field, humans don't
-          3. `name="Contact Form"`  →  how the form appears in the dashboard;
-             also used if you set up email notifications in Netlify UI
-
-          After deploying, go to:
-          Netlify dashboard → your site → Forms
-          From there you can:
-          - View all submissions
-          - Enable email notifications to lshi@kennesaw.edu
-          - Set up Slack alerts, webhooks, etc.
-        -->
         <form
           class="cs-form"
           id="cs-form-1403"
@@ -76,7 +60,6 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
           data-netlify="true"
           netlify-honeypot="bot-field"
         >
-            <!-- Hidden honeypot field — must exist in the HTML but is hidden via CSS -->
             <input type="hidden" name="form-name" value="Contact Form" />
             <label class="cs-label" style="display:none;">
                 Don't fill this out: <input name="bot-field" />
