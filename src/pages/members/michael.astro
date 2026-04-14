@@ -54,8 +54,12 @@ const member = {
 
   locations: {
     birthplace: "Lawrenceville, Georgia",
-    highSchool: "Example High School",
-    traveled: []
+    highSchool: "Buford High School",
+    traveled: [
+      { name: "Atlanta",      country: "USA",    lat: 33.749,  lon: -84.388, label: "Home city" },
+      { name: "New York",     country: "USA",    lat: 40.712,  lon: -74.006 },
+      { name: "Tokyo",        country: "Japan",  lat: 35.682,  lon: 139.691 },
+    ]
   }
 };
 ---
@@ -91,12 +95,10 @@ const member = {
               <span class="cs-meta-label">Lab</span>
               <span class="cs-meta-value">{member.department}</span>
             </div>
-
             <div class="cs-meta-item">
               <span class="cs-meta-label">Role</span>
               <span class="cs-meta-value">{member.role}</span>
             </div>
-
             <div class="cs-meta-item">
               <span class="cs-meta-label">Email</span>
               <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
@@ -107,6 +109,7 @@ const member = {
 
       <div class="cs-main-grid">
         <div class="cs-main-content">
+
           <section class="cs-section-card">
             <h2>Introduction</h2>
             <p>{member.introduction}</p>
@@ -148,8 +151,9 @@ const member = {
               ))}
             </div>
           </section>
+
+          <!-- Quick Facts -->
           <div class="cs-sidebar-card">
-            
             <h3>Quick Facts:</h3>
             <br>
             <ul class="cs-facts-list">
@@ -167,10 +171,205 @@ const member = {
               </li>
             </ul>
           </div>
+
+          <!-- ── Travel Map ── -->
+          <section class="cs-section-card cs-map-section">
+            <h2>Places I've Been</h2>
+            <p class="cs-map-desc">
+              {member.locations.traveled.length > 0
+                ? `${member.locations.traveled.length} place${member.locations.traveled.length !== 1 ? "s" : ""} across ${new Set(member.locations.traveled.map(p => p.country)).size} countr${new Set(member.locations.traveled.map(p => p.country)).size !== 1 ? "ies" : "y"} explored so far.`
+                : "No places logged yet — check back soon!"}
+            </p>
+
+            <div class="cs-map-wrap" id="cs-map-wrap">
+              <canvas id="cs-map-canvas"></canvas>
+              <div id="cs-map-tooltip" role="tooltip">
+                <strong id="cs-tt-name"></strong>
+                <span id="cs-tt-info"></span>
+              </div>
+              {member.locations.traveled.length === 0 && (
+                <div class="cs-map-empty">
+                  <span>No locations yet</span>
+                </div>
+              )}
+            </div>
+
+            {member.locations.traveled.length > 0 && (
+              <ul class="cs-place-chips">
+                {member.locations.traveled.map((p) => (
+                  <li class="cs-place-chip">
+                    <span class="cs-chip-dot"></span>
+                    {p.name}{p.label ? ` — ${p.label}` : ""}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
           <br>
+          <br>
+
+        </div>
+      </div>
+
     </div>
   </section>
 </BaseLayout>
+
+<script
+  define:vars={{
+    traveledPlaces: member.locations.traveled,
+    birthplace: member.locations.birthplace,
+  }}
+>
+  const canvas = document.getElementById("cs-map-canvas");
+  if (!canvas || traveledPlaces.length === 0) {
+    if (canvas) canvas.style.display = "none";
+  } else {
+    const ctx = canvas.getContext("2d");
+    const wrap = document.getElementById("cs-map-wrap");
+    const tooltip = document.getElementById("cs-map-tooltip");
+
+    let proj, pathFn, W, H, worldData;
+    const PIN_COLOR = "#e02020";
+
+    function drawPin(x, y, r) {
+      const h = r * 2.2;
+      ctx.beginPath();
+      ctx.arc(x, y - h + r, r, Math.PI, 0);
+      ctx.quadraticCurveTo(x + r, y - h + r * 1.8, x, y);
+      ctx.quadraticCurveTo(x - r, y - h + r * 1.8, x - r, y - h + r);
+      ctx.closePath();
+      ctx.fillStyle = PIN_COLOR;
+      ctx.fill();
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, y - h + r, r * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = "#fff";
+      ctx.fill();
+    }
+
+    function loadScript(src) {
+      return new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.onload = res;
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+
+    async function init() {
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js");
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js");
+      const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      worldData = await res.json();
+      resize();
+      window.addEventListener("resize", resize);
+    }
+
+    function setupProjection() {
+      W = canvas.width / (window.devicePixelRatio || 1);
+      H = canvas.height / (window.devicePixelRatio || 1);
+      proj = d3.geoNaturalEarth1()
+        .scale(W / 6.5)
+        .translate([W / 2, H / 2]);
+      pathFn = d3.geoPath(proj, ctx);
+    }
+
+    function draw() {
+      const dpr = window.devicePixelRatio || 1;
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, W, H);
+
+      ctx.beginPath();
+      pathFn({ type: "Sphere" });
+      ctx.fillStyle = "#b2dfd4";
+      ctx.fill();
+
+      const graticule = d3.geoGraticule()();
+      ctx.beginPath();
+      pathFn(graticule);
+      ctx.strokeStyle = "rgba(255,255,255,0.35)";
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+
+      const countries = topojson.feature(worldData, worldData.objects.countries);
+      countries.features.forEach((f) => {
+        ctx.beginPath();
+        pathFn(f);
+        ctx.fillStyle = "#c8ddb0";
+        ctx.fill();
+        ctx.strokeStyle = "#a8c890";
+        ctx.lineWidth = 0.4;
+        ctx.stroke();
+      });
+
+      ctx.beginPath();
+      pathFn({ type: "Sphere" });
+      ctx.strokeStyle = "#7bbfb0";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      traveledPlaces.forEach((p) => {
+        const xy = proj([p.lon, p.lat]);
+        if (!xy) return;
+        const [x, y] = xy;
+        drawPin(x, y, 6);
+      });
+
+      ctx.restore();
+    }
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = wrap.getBoundingClientRect().width;
+      const h = Math.round(w * 0.5);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      setupProjection();
+      draw();
+    }
+
+    // Tooltip
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const scaleX = (canvas.width / dpr) / rect.width;
+      const scaleY = (canvas.height / dpr) / rect.height;
+      const mx = (e.clientX - rect.left) * scaleX;
+      const my = (e.clientY - rect.top) * scaleY;
+
+      const hit = traveledPlaces.find((p) => {
+        const xy = proj([p.lon, p.lat]);
+        return xy && Math.hypot(mx - xy[0], my - xy[1]) < 10;
+      });
+
+      if (hit) {
+        tooltip.style.display = "block";
+        tooltip.style.left = e.clientX - rect.left + 12 + "px";
+        tooltip.style.top = e.clientY - rect.top - 48 + "px";
+        document.getElementById("cs-tt-name").textContent = hit.name;
+        document.getElementById("cs-tt-info").textContent =
+          hit.country + (hit.label ? " · " + hit.label : "");
+        canvas.style.cursor = "pointer";
+      } else {
+        tooltip.style.display = "none";
+        canvas.style.cursor = "default";
+      }
+    });
+    canvas.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+    });
+
+    init();
+  }
+</script>
 
 <style lang="less">
   #member-profile {
@@ -184,21 +383,6 @@ const member = {
       display: flex;
       flex-direction: column;
       gap: (32/16rem);
-    }
-
-    .cs-breadcrumbs {
-      font-size: (14/16rem);
-      line-height: 1.5em;
-      color: var(--bodyTextColor);
-
-      a {
-        color: var(--primary);
-        text-decoration: none;
-      }
-
-      span {
-        margin: 0 (6/16rem);
-      }
     }
 
     .cs-hero {
@@ -312,8 +496,7 @@ const member = {
 
     .cs-section-card h2,
     .cs-sidebar-card h3,
-    .cs-cv-card h3,
-    .cs-location-card h3 {
+    .cs-cv-card h3 {
       margin-top: 0;
       color: var(--headerColor);
     }
@@ -335,41 +518,17 @@ const member = {
       }
     }
 
-    .cs-cv-grid,
-    .cs-location-grid {
+    .cs-cv-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: (16/16rem);
     }
 
-    .cs-cv-card,
-    .cs-location-card {
+    .cs-cv-card {
       border: 1px solid #ececec;
       border-radius: (12/16rem);
       padding: (18/16rem);
       background: #fafafa;
-    }
-
-    .cs-map-note {
-      margin-bottom: (16/16rem);
-    }
-
-    .cs-map-placeholder {
-      min-height: (280/16rem);
-      border: 2px dashed #cfcfcf;
-      border-radius: (16/16rem);
-      background: #f7f7f7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: (20/16rem);
-      padding: (24/16rem);
-      box-sizing: border-box;
-    }
-
-    .cs-map-placeholder-inner p {
-      margin: (8/16rem) 0 0 0;
     }
 
     .cs-sidebar {
@@ -403,6 +562,91 @@ const member = {
         color: var(--headerColor);
       }
     }
+
+    /* ── Travel Map ── */
+    .cs-map-section {
+      h2 { margin-bottom: (6/16rem); }
+    }
+
+    .cs-map-desc {
+      font-size: (14/16rem);
+      color: var(--bodyTextColor);
+      margin: 0 0 (16/16rem) 0;
+    }
+
+    .cs-map-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: (12/16rem);
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      background: #e8f4f0;
+    }
+
+    #cs-map-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    .cs-map-empty {
+      min-height: (220/16rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: (14/16rem);
+      color: #aaa;
+    }
+
+    #cs-map-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: (8/16rem);
+      padding: (7/16rem) (12/16rem);
+      font-size: (12/16rem);
+      color: var(--bodyTextColor);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+      strong {
+        color: var(--headerColor);
+        display: block;
+        margin-bottom: 1px;
+        font-size: (13/16rem);
+      }
+    }
+
+    .cs-place-chips {
+      list-style: none;
+      padding: 0;
+      margin: (16/16rem) 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: (8/16rem);
+    }
+
+    .cs-place-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: (6/16rem);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: (4/16rem) (12/16rem);
+      font-size: (13/16rem);
+      color: #1e40af;
+    }
+
+    .cs-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2563eb;
+      flex-shrink: 0;
+    }
   }
 
   @media only screen and (min-width: 48rem) {
@@ -416,8 +660,7 @@ const member = {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .cs-cv-grid,
-      .cs-location-grid {
+      .cs-cv-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -433,10 +676,6 @@ const member = {
       .cs-sidebar {
         position: sticky;
         top: 6rem;
-      }
-
-      .cs-location-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
   }
