@@ -174,11 +174,8 @@ const member = {
 
           <!-- ── Travel Map ── -->
           <section class="cs-section-card cs-map-section">
-            <h2>Places I've Been</h2>
-            <p class="cs-map-desc">
-              {member.locations.traveled.length > 0
-                ? `${member.locations.traveled.length} place${member.locations.traveled.length !== 1 ? "s" : ""} across ${new Set(member.locations.traveled.map(p => p.country)).size} countr${new Set(member.locations.traveled.map(p => p.country)).size !== 1 ? "ies" : "y"} explored so far.`
-                : "No places logged yet — check back soon!"}
+            <h2>Places Visited</h2>
+            <br>
             </p>
 
             <div class="cs-map-wrap" id="cs-map-wrap">
