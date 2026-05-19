@@ -2,24 +2,30 @@
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
-  fullName: "Maharshi Naik",
-  role: "Undergraduate Researcher",
-  image: "/assets/images/members/maharshi.png",
-  email: "undergraduate@example.com",
+  fullName: "Nanlong Sun",
+  role: "Graduate Researcher, PhD Student",
+  image: "/assets/images/members/nanlong.jpg",
+  email: "nanlong@example.com",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
 
   introduction:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
 
   hobbies: [
-    "Listening to Music",
-    "Watching F1"
+    "Singing",
+    "Dancing",
+    "Hiking",
+    "Roller Skating",
+    "Cooking",
+    "Arranging Flowers"
   ],
 
   academicExperience: [
-    "Highschool Diploma - [Some Highschool]"
+    "Ph.D. in [Field] - [University]",
+    "M.S. in [Field] - [University]",
+    "B.S. in [Field] - [University]"
   ],
 
   workExperience: [
@@ -32,7 +38,8 @@ const member = {
     {
       title: "Career Interests",
       items: [
-        "Software Engineer",
+        "Educator",
+        "Programmer",
       ]
     },
     {
@@ -53,10 +60,11 @@ const member = {
   ],
 
   locations: {
-    birthplace: "Alpharetta, Georgia",
+    birthplace: "China",
     highSchool: "Example High School",
     traveled: [
-      { name: "United States", country: "USA", lat: 37.0902, lon: -95.7129, label: "Research" }
+      { name: "China", country: "China", lat: 35.8617, lon: 104.1954, label: "Birthplace" },
+      { name: "United States", country: "USA", lat: 37.0902, lon: -95.7129, label: "Research" },
     ]
   }
 };
@@ -209,6 +217,7 @@ const member = {
 
     function drawPin(x, y, r) {
       const h = r * 2.2;
+
       ctx.beginPath();
       ctx.arc(x, y - h + r, r, Math.PI, 0);
       ctx.quadraticCurveTo(x + r, y - h + r * 1.8, x, y);
@@ -216,9 +225,11 @@ const member = {
       ctx.closePath();
       ctx.fillStyle = PIN_COLOR;
       ctx.fill();
+
       ctx.strokeStyle = "#fff";
       ctx.lineWidth = 1;
       ctx.stroke();
+
       ctx.beginPath();
       ctx.arc(x, y - h + r, r * 0.45, 0, Math.PI * 2);
       ctx.fillStyle = "#fff";
@@ -238,8 +249,10 @@ const member = {
     async function init() {
       await loadScript("https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js");
       await loadScript("https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js");
+
       const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
       worldData = await res.json();
+
       resize();
       window.addEventListener("resize", resize);
     }
@@ -247,26 +260,35 @@ const member = {
     function setupProjection() {
       W = canvas.width / (window.devicePixelRatio || 1);
       H = canvas.height / (window.devicePixelRatio || 1);
-      proj = d3.geoNaturalEarth1().scale(W / 6.5).translate([W / 2, H / 2]);
+
+      proj = d3.geoNaturalEarth1()
+        .scale(W / 6.5)
+        .translate([W / 2, H / 2]);
+
       pathFn = d3.geoPath(proj, ctx);
     }
 
     function draw() {
       const dpr = window.devicePixelRatio || 1;
+
       ctx.save();
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, W, H);
+
       ctx.beginPath();
       pathFn({ type: "Sphere" });
       ctx.fillStyle = "#b2dfd4";
       ctx.fill();
+
       const graticule = d3.geoGraticule()();
       ctx.beginPath();
       pathFn(graticule);
       ctx.strokeStyle = "rgba(255,255,255,0.35)";
       ctx.lineWidth = 0.5;
       ctx.stroke();
+
       const countries = topojson.feature(worldData, worldData.objects.countries);
+
       countries.features.forEach((f) => {
         ctx.beginPath();
         pathFn(f);
@@ -276,16 +298,19 @@ const member = {
         ctx.lineWidth = 0.4;
         ctx.stroke();
       });
+
       ctx.beginPath();
       pathFn({ type: "Sphere" });
       ctx.strokeStyle = "#7bbfb0";
       ctx.lineWidth = 1;
       ctx.stroke();
+
       traveledPlaces.forEach((p) => {
         const xy = proj([p.lon, p.lat]);
         if (!xy) return;
         drawPin(xy[0], xy[1], 6);
       });
+
       ctx.restore();
     }
 
@@ -293,10 +318,12 @@ const member = {
       const dpr = window.devicePixelRatio || 1;
       const w = wrap.getBoundingClientRect().width;
       const h = Math.round(w * 0.5);
+
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = w + "px";
       canvas.style.height = h + "px";
+
       setupProjection();
       draw();
     }
@@ -305,16 +332,21 @@ const member = {
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
+
       const hit = traveledPlaces.find((p) => {
         const xy = proj([p.lon, p.lat]);
         return xy && Math.hypot(mx - xy[0], my - xy[1]) < 10;
       });
+
       if (hit) {
         tooltip.style.display = "block";
         tooltip.style.left = mx + 12 + "px";
         tooltip.style.top = my - 48 + "px";
+
         document.getElementById("cs-tt-name").textContent = hit.name;
-        document.getElementById("cs-tt-info").textContent = hit.country + (hit.label ? " · " + hit.label : "");
+        document.getElementById("cs-tt-info").textContent =
+          hit.country + (hit.label ? " · " + hit.label : "");
+
         canvas.style.cursor = "pointer";
       } else {
         tooltip.style.display = "none";
@@ -528,6 +560,66 @@ const member = {
 
     .cs-map-placeholder-inner p {
       margin: (8/16rem) 0 0 0;
+    }
+
+    .cs-map-section {
+      h2 {
+        margin-bottom: (16/16rem);
+      }
+    }
+
+    .cs-map-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: (12/16rem);
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      background: #e8f4f0;
+      margin-bottom: (16/16rem);
+    }
+
+    #cs-map-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    #cs-map-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: (8/16rem);
+      padding: (7/16rem) (12/16rem);
+      font-size: (12/16rem);
+      color: var(--bodyTextColor);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .cs-place-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: (10/16rem);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: (6/16rem);
+        font-size: (13/16rem);
+        color: var(--bodyTextColor);
+      }
+    }
+
+    .cs-chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e02020;
     }
 
     .cs-sidebar {

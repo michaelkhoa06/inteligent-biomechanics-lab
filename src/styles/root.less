@@ -32,10 +32,11 @@
     --csButtonHoverColor: hsl(204, 81%, 41%);
     --csButtonTextColor: #f8f8f8;
 
-    /* 13px - 16px */
-    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
-    /* 31px - 49px */
-    --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
+    --fontFamily: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+    /* 14px - 17px */
+    --topperFontSize: clamp(0.875rem, 1.6vw, 1.0625rem);
+    /* 34px - 52px */
+    --headerFontSize: clamp(2.125rem, 3.9vw, 3.25rem);
     --bodyFontSize: 1rem;
     /* 60px - 100px top and bottom */
     --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
@@ -62,8 +63,9 @@
   }
   .cs-title {
     font-size: var(--headerFontSize);
-    font-weight: 900;
-    line-height: 1.2em;
+    font-weight: 700;
+    line-height: 1.15em;
+    letter-spacing: -0.02em;
     margin: 0 auto (16/16rem);
     color: var(--csTitleColor);
     position: relative;
@@ -71,7 +73,7 @@
 
   .cs-text {
     font-size: var(--bodyFontSize);
-    line-height: 1.5em;
+    line-height: 1.65em;
     width: 100%;
     margin: 0 auto;
     color: var(--csTextColor);
@@ -79,7 +81,7 @@
 
   .cs2-text {
     font-size: var(--bodyFontSize);
-    line-height: 1.5em;
+    line-height: 1.65em;
     width: 100%;
     margin: 0 auto;
     color: var(--csText2Color);
@@ -133,50 +135,21 @@
 
 /* Fonts and general styles */
 @media only screen and (min-width: 0em) {
-  // Grab your fonts to locally host from https://google-webfonts-helper.herokuapp.com/fonts
-
-  /* roboto-regular - latin */
-  @font-face {
-    font-style: normal;
-    font-family: "Roboto";
-    font-weight: 400;
-    font-display: swap;
-    src: local(""),
-      url("/assets/fonts/roboto-v29-latin-regular.woff2") format("woff2"),
-      /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url("/assets/fonts/roboto-v29-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
-  /* roboto-700 - latin */
-  @font-face {
-    font-style: normal;
-    font-family: "Roboto";
-    font-weight: 700;
-    font-display: swap;
-    src: local(""),
-      url("/assets/fonts/roboto-v29-latin-700.woff2") format("woff2"),
-      /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url("/assets/fonts/roboto-v29-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
-  /* roboto-900 - latin */
-  @font-face {
-    font-style: normal;
-    font-family: "Roboto";
-    font-weight: 900;
-    font-display: swap;
-    src: local(""),
-      url("/assets/fonts/roboto-v29-latin-900.woff2") format("woff2"),
-      /* Chrome 26+, Opera 23+, Firefox 39+ */
-        url("/assets/fonts/roboto-v29-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  html {
+    /* 17px effective base — scales all rem-based sizes sitewide */
+    font-size: 106.25%;
   }
 
   body,
   html {
-    font-family: "Roboto", Arial, sans-serif;
-    font-size: 100%;
+    font-family: var(--fontFamily);
     margin: 0;
     padding: 0;
     color: var(--bodyTextColor);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   *,
@@ -204,14 +177,18 @@
   h5,
   h6 {
     margin: 0;
+    font-family: var(--fontFamily);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2em;
     color: var(--headerColor);
   }
 
   p,
   li,
   a {
-    font-size: (16/16rem);
-    line-height: 1.5em;
+    font-size: var(--bodyFontSize);
+    line-height: 1.65em;
     margin: 0;
   }
 

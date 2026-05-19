@@ -9,7 +9,12 @@
     "url": "/achievements/",
     "children": []
   },
-    {
+  {
+    "key": "Item",
+    "url": "/item/",
+    "children": []
+  },
+  {
     "key": "Members",
     "url": "/members/",
     "children": []
