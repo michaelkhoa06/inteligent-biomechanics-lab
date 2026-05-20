@@ -3,24 +3,1465 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Item - Intelligent Biomechanics Lab"
-  description="Item page for Intelligent Biomechanics Lab"
+  title="Research Projects - Intelligent Biomechanics Lab"
+  description="Explore our cutting-edge research projects: HeartSimSage for cardiac mechanics and Stomach Digital Twin for GI motility modeling"
 >
 
-<!-- ============================================ -->
-<!--                    Item                      -->
-<!-- ============================================ -->
-
-<section id="item-section">
+<!-- Hero Section -->
+<section id="item-hero">
     <div class="cs-container">
         <div class="cs-content">
-            <span class="cs-topper">Item</span>
-            <h1 class="cs-title">Coming Soon</h1>
-            <p class="cs-text">
-                This page is under construction. Stay tuned for updates.
-            </p>
+            <span class="cs-topper">Research Projects</span>
+            <h1 class="cs-title">Advanced Biomechanical Modeling</h1>
+            <p class="cs-subtitle">Explore our cutting-edge research projects in cardiac mechanics and gastrointestinal motility modeling</p>
         </div>
     </div>
 </section>
 
+<!-- Project Switcher -->
+<section id="project-switcher">
+    <div class="cs-container">
+        <div class="cs-tabs">
+            <button class="cs-tab cs-tab-active" data-tab="heartsimsage">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">HeartSimSage</span>
+                <span class="cs-tab-badge">NIH</span>
+            </button>
+            <button class="cs-tab" data-tab="stomach-dt">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2.05 7.5a2.5 2.5 0 0 1 2.88-2.49 19.791 19.791 0 0 1 8.986 3.05 19.791 19.791 0 0 1 3.293 2.626 2.5 2.5 0 0 1-1.71 4.298 2.5 2.5 0 0 1-2.5.5 2.5 2.5 0 0 1-1.879-4.27 17.733 17.733 0 0 0-3.657-2.974 2.5 2.5 0 0 1-.741-4.286z"/>
+                        <path d="m15.77 4.23 1.41 1.41-1.59 1.59-1.41-1.41 1.59-1.59z"/>
+                        <path d="m7.23 15.77 1.41-1.41 1.59 1.59-1.41 1.41-1.59-1.59z"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">Stomach Digital Twin</span>
+                <span class="cs-tab-badge">NSF</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- HeartSimSage Content -->
+<div id="heartsimsage-content" class="project-content project-active">
+    <!-- Overview -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">HeartSimSage</h2>
+            <div class="content-block">
+                <p>HeartSimSage is an attention-enhanced graph neural network (GNN) framework developed by Dr. Lei Shi's team at Kennesaw State University (KSU) in collaboration with researchers from Columbia University and Emory University. It serves as an AI simulation accelerator for finite element analysis (FEA), aiming to replace traditional computationally expensive cardiac biomechanical finite element solvers.</p>
+                <p>Traditional finite element analysis (FEA) methods provide highly accurate biomechanical modeling of the heart, but they are computationally expensive and difficult to scale for large cohorts or real-time clinical applications. HeartSimSage addresses this challenge by learning the relationship between cardiac geometry, material properties, physiological loading conditions, and resulting tissue deformation directly from simulation data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding -->
+    <section class="item-section bg-white">
+        <div class="cs-container">
+            <h2 class="section-title">Funding & Support</h2>
+            <div class="funding-grid">
+                <div class="funding-card">
+                    <div class="funding-header">
+                        <img src="/assets/images/funding/NIH.svg" alt="NIH Logo" class="funding-logo" />
+                        <span class="funding-amount">$522,695</span>
+                    </div>
+                    <h3 class="funding-title">National Institutes of Health (NIH)</h3>
+                    <p class="funding-desc">Core funding for the Generative AI and biomechanics heart modeling research project.</p>
+                </div>
+                <div class="funding-card">
+                    <div class="funding-header">
+                        <div class="funding-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <span class="funding-amount">Collaboration</span>
+                    </div>
+                    <h3 class="funding-title">Emory University</h3>
+                    <p class="funding-desc">Clinical validation and medical imaging data support.</p>
+                </div>
+                <div class="funding-card">
+                    <div class="funding-header">
+                        <div class="funding-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <span class="funding-amount">Collaboration</span>
+                    </div>
+                    <h3 class="funding-title">Columbia University</h3>
+                    <p class="funding-desc">Multi-scale modeling methodology collaboration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Technical Architecture</h2>
+            <p class="section-text">HeartSimSage's core architecture integrates four key technical dimensions to achieve both flexibility and accuracy in cardiac biomechanical simulations.</p>
+            
+            <div class="image-container">
+                <img src="/assets/images/item/heartsim.png" alt="HeartSimSage Framework Architecture" class="arch-image" loading="lazy" decoding="async" />
+                <div class="image-caption"><strong>Figure 1:</strong> HeartSimSage framework architecture illustrating the graph-based representation with attention-driven message-passing mechanism.</div>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">GraphSAGE-based Topology</h3>
+                    <p class="tech-text">Converts cardiac finite element meshes into graph structures with flexible node connectivity.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">Laplace-Dirichlet Encoding</h3>
+                    <p class="tech-text">Solves Laplace equations on cardiac meshes to encode spatial embedding vectors.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">Attention Mechanism</h3>
+                    <p class="tech-text">Adaptive message passing that dynamically weights neighboring node influences.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="9" x2="15" y2="9"/>
+                            <line x1="9" y1="15" x2="14" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">Subset Training</h3>
+                    <p class="tech-text">Efficient subgraph sampling strategy that reduces memory requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="item-section bg-dark">
+        <div class="cs-container">
+            <h2 class="section-title light">Performance Results</h2>
+            <p class="section-text light">Published in the <em>Journal of Computational Physics</em>, HeartSimSage achieves unprecedented acceleration while maintaining high-fidelity accuracy.</p>
+            
+            <div class="performance-grid">
+                <div class="performance-card">
+                    <div class="performance-value">13,000x</div>
+                    <div class="performance-label">GPU Acceleration</div>
+                    <div class="performance-compare">vs. traditional FEA</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-value">190x</div>
+                    <div class="performance-label">CPU Acceleration</div>
+                    <div class="performance-compare">vs. traditional FEA</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-value">0.13%</div>
+                    <div class="performance-label">Average Error</div>
+                    <div class="performance-compare">± 0.12%</div>
+                </div>
+                <div class="performance-card">
+                    <div class="performance-value">0.28mm</div>
+                    <div class="performance-label">Max Displacement Error</div>
+                    <div class="performance-compare">Median absolute</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="item-section bg-white">
+        <div class="cs-container">
+            <h2 class="section-title">Publications</h2>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <h3 class="pub-title">HeartSimSage: Attention-enhanced graph neural networks for accelerating cardiac mechanics modeling</h3>
+                    <p class="pub-authors">Shi L*, Chen Y, Vedula V</p>
+                    <p class="pub-journal"><em>Journal of Computational Physics</em>, 2026</p>
+                    <p class="pub-desc">Introduces the HeartSimSage framework for AI-accelerated cardiac biomechanical simulations.</p>
+                </div>
+                <div class="pub-item">
+                    <h3 class="pub-title">Personalized Multiscale Modeling of Left Atrial Mechanics and Blood Flow</h3>
+                    <p class="pub-authors">Shi L*, Chen IY, Vedula V</p>
+                    <p class="pub-journal"><em>Computer Methods in Applied Mechanics and Engineering</em>, 2026</p>
+                    <p class="pub-desc">Multiscale electromechanical coupling methodology foundation.</p>
+                </div>
+            </div>
+            <div class="pub-more">
+                <a href="https://scholar.google.com/citations?hl=en&user=t-lHPeMAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener noreferrer" class="more-btn">
+                    View more publications
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contributors -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Project Contributors</h2>
+            <div class="contributors-grid">
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <img src="/assets/images/members/shi.png" alt="Lei Shi" />
+                    </div>
+                    <div class="contributor-info">
+                        <h3 class="contributor-name">Lei Shi</h3>
+                        <p class="contributor-role">Principal Investigator</p>
+                        <p class="contributor-affiliation">Kennesaw State University</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="item-section bg-dark">
+        <div class="cs-container">
+            <h2 class="section-title light">Project Timeline</h2>
+            <p class="section-text light">Key milestones and achievements throughout the project lifecycle.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 Q4</span>
+                        <h3 class="timeline-title">Project Initiation</h3>
+                        <p class="timeline-desc">NIH R01 funding awarded; project kickoff with team assembly and literature review.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 Q2</span>
+                        <h3 class="timeline-title">Methodology Development</h3>
+                        <p class="timeline-desc">Development of Laplace-Dirichlet spatial encoding and attention mechanism integration.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 Q4</span>
+                        <h3 class="timeline-title">Model Training & Validation</h3>
+                        <p class="timeline-desc">Large-scale training on cardiac simulation datasets; validation against clinical data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 Q2</span>
+                        <h3 class="timeline-title">Paper Submission</h3>
+                        <p class="timeline-desc">Manuscript submitted to Journal of Computational Physics.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker active"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026 Q1</span>
+                        <h3 class="timeline-title">Publication & Dissemination</h3>
+                        <p class="timeline-desc">Paper accepted and published; framework released for research community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Impact & Applications</h2>
+            <p class="section-text">HeartSimSage represents an important step toward scalable, AI-driven cardiac digital twins.</p>
+            
+            <div class="applications-list">
+                <div class="application-item">
+                    <span class="application-number">01</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Personalized Diagnosis</h3>
+                        <p class="application-text">Enables accurate patient-specific predictions for improved diagnostic accuracy.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">02</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Surgical Planning</h3>
+                        <p class="application-text">Supports pre-operative planning through rapid biomechanical simulations.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">03</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Treatment Optimization</h3>
+                        <p class="application-text">Facilitates treatment planning by predicting outcomes under different scenarios.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">04</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Large-Scale Research</h3>
+                        <p class="application-text">Enables population-scale studies through efficient computation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Stomach Digital Twin Content -->
+<div id="stomach-dt-content" class="project-content">
+    <!-- Overview -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Stomach Digital Twin</h2>
+            <div class="content-block">
+                <p>The Stomach Digital Twin project is an NSF-funded research initiative led by Dr. Lei Shi at Kennesaw State University. This project aims to develop multiscale electromechanical modeling of stomach motility and structure to advance digital twin models for personalized GI health applications.</p>
+                <p>The stomach is a complex multi-layered organ with nonlinear, large-deformation characteristics. This project integrates microstructure-informed biomechanical models with ion-based electrophysiology to create patient-specific digital twins.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding -->
+    <section class="item-section bg-white">
+        <div class="cs-container">
+            <h2 class="section-title">Funding & Support</h2>
+            <div class="funding-grid">
+                <div class="funding-card primary-card">
+                    <div class="funding-header">
+                        <img src="/assets/images/funding/NSF.svg" alt="NSF Logo" class="funding-logo" />
+                        <span class="funding-amount">$199,208</span>
+                    </div>
+                    <h3 class="funding-title">National Science Foundation (NSF)</h3>
+                    <p class="funding-desc">ERI award supporting multiscale electromechanical modeling of stomach motility.</p>
+                </div>
+                <div class="funding-card">
+                    <div class="funding-header">
+                        <div class="funding-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <span class="funding-amount">Collaboration</span>
+                    </div>
+                    <h3 class="funding-title">Emory University</h3>
+                    <p class="funding-desc">Clinical validation and medical imaging data support.</p>
+                </div>
+                <div class="funding-card">
+                    <div class="funding-header">
+                        <div class="funding-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <span class="funding-amount">Collaboration</span>
+                    </div>
+                    <h3 class="funding-title">Columbia University</h3>
+                    <p class="funding-desc">Multi-scale electromechanical coupling methodology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Technical Architecture</h2>
+            <p class="section-text">The Stomach Digital Twin integrates three core technical pillars: microstructure-informed biomechanical modeling, electromechanical coupling, and AI-accelerated simulation.</p>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12h16M4 12l4-4m-4 4l4 4"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">Hyper-Viscoelastic Modeling</h3>
+                    <p class="tech-text">Microstructure-informed material model capturing soft tissue tensile behavior across large deformations.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">Electromechanical Coupling</h3>
+                    <p class="tech-text">3D-0D implicit coupling framework integrating ion-based electrophysiology with solid mechanics.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">AI Acceleration</h3>
+                    <p class="tech-text">Graph neural network-based surrogate modeling extending HeartSimSage technology.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="9" x2="15" y2="9"/>
+                            <line x1="9" y1="15" x2="14" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-title">4D Patient-Specific Imaging</h3>
+                    <p class="tech-text">Integration of time-phase CT imaging for constructing patient-specific stomach geometry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="item-section bg-dark">
+        <div class="cs-container">
+            <h2 class="section-title light">Supporting Publications</h2>
+            <p class="section-text light">The Stomach Digital Twin project builds upon a strong foundation of prior research.</p>
+            
+            <div class="pub-grid">
+                <div class="pub-card">
+                    <div class="pub-year">2026</div>
+                    <h3 class="pub-title">Microstructure-Informed Hyper-Viscoelastic Model</h3>
+                    <p class="pub-authors">L Shi, K Myers</p>
+                    <p class="pub-journal">Journal of the Mechanics and Physics of Solids</p>
+                </div>
+                <div class="pub-card">
+                    <div class="pub-year">2026</div>
+                    <h3 class="pub-title">Personalized Multiscale Modeling of Left Atrial Mechanics</h3>
+                    <p class="pub-authors">L Shi, IY Chen, V Vedula</p>
+                    <p class="pub-journal">Computer Methods in Applied Mechanics and Engineering</p>
+                </div>
+                <div class="pub-card">
+                    <div class="pub-year">2026</div>
+                    <h3 class="pub-title">HeartSimSage: Attention-Enhanced Graph Neural Networks</h3>
+                    <p class="pub-authors">L Shi, Y Chen, V Vedula</p>
+                    <p class="pub-journal">Journal of Computational Physics</p>
+                </div>
+                <div class="pub-card">
+                    <div class="pub-year">2024</div>
+                    <h3 class="pub-title">Multiscale Electromechanics Modeling Framework</h3>
+                    <p class="pub-authors">V Vedula, L Shi, BB Gan</p>
+                    <p class="pub-journal">APS Division of Fluid Dynamics</p>
+                </div>
+            </div>
+            <div class="pub-more">
+                <a href="https://scholar.google.com/citations?hl=en&user=t-lHPeMAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener noreferrer" class="more-btn dark">
+                    View more publications
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contributors -->
+    <section class="item-section bg-white">
+        <div class="cs-container">
+            <h2 class="section-title">Project Contributors</h2>
+            <div class="contributors-grid">
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <img src="/assets/images/members/shi.png" alt="Lei Shi" />
+                    </div>
+                    <div class="contributor-info">
+                        <h3 class="contributor-name">Lei Shi</h3>
+                        <p class="contributor-role">Principal Investigator</p>
+                        <p class="contributor-affiliation">Kennesaw State University</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="item-section bg-dark">
+        <div class="cs-container">
+            <h2 class="section-title light">Project Timeline</h2>
+            <p class="section-text light">Key milestones and achievements throughout the project lifecycle.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 Q1</span>
+                        <h3 class="timeline-title">NSF ERI Award</h3>
+                        <p class="timeline-desc">NSF Engineering Research Initiative grant awarded for stomach motility modeling.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 Q2</span>
+                        <h3 class="timeline-title">Methodology Development</h3>
+                        <p class="timeline-desc">Development of hyper-viscoelastic material model for gastric tissue.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 Q4</span>
+                        <h3 class="timeline-title">Electromechanical Coupling</h3>
+                        <p class="timeline-desc">Integration of electrophysiology and biomechanics modeling.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker active"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026 Q1</span>
+                        <h3 class="timeline-title">AI Acceleration Integration</h3>
+                        <p class="timeline-desc">Adapting HeartSimSage GNN framework for stomach simulations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker future"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026 Q4</span>
+                        <h3 class="timeline-title">Clinical Validation</h3>
+                        <p class="timeline-desc">Validation with Emory University clinical data and paper submission.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="item-section">
+        <div class="cs-container">
+            <h2 class="section-title">Research Goals & Applications</h2>
+            <p class="section-text">The Stomach Digital Twin project aims to revolutionize the diagnosis and treatment of gastrointestinal motility disorders.</p>
+            
+            <div class="applications-list">
+                <div class="application-item">
+                    <span class="application-number">01</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Motility Disorder Diagnosis</h3>
+                        <p class="application-text">Accurate simulation of gastric peristalsis to identify subtle motility abnormalities.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">02</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Gastric Pacemaker Optimization</h3>
+                        <p class="application-text">Personalized design and placement optimization for gastric electrical stimulation devices.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">03</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Surgical Planning</h3>
+                        <p class="application-text">Pre-operative simulation of bariatric and GI surgical procedures.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">04</span>
+                    <div class="application-content">
+                        <h3 class="application-title">Drug Response Prediction</h3>
+                        <p class="application-text">Modeling the effects of prokinetic drugs on gastric motility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
 </BaseLayout>
+
+<style>
+/* Hero Section */
+#item-hero {
+    padding: clamp(6rem, 12vw, 10rem) 1rem clamp(4rem, 8vw, 6rem);
+    background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#item-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+#item-hero .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+#item-hero .cs-content {
+    text-align: center;
+    color: white;
+}
+
+#item-hero .cs-topper {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+#item-hero .cs-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1em;
+    margin: 0 auto 1.25rem;
+    max-width: 20ch;
+}
+
+#item-hero .cs-subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.6em;
+    opacity: 0.95;
+    max-width: 50ch;
+    margin: 0 auto;
+}
+
+/* Project Switcher */
+#project-switcher {
+    padding: 1.5rem 1rem;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#project-switcher .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+}
+
+#project-switcher .cs-tabs {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#project-switcher .cs-tab {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.125rem 2rem;
+    background: #f8fafc;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 14rem;
+    justify-content: center;
+}
+
+#project-switcher .cs-tab:hover {
+    background: #f1f5f9;
+    transform: scale(1.02);
+}
+
+#project-switcher .cs-tab.cs-tab-active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+#project-switcher .cs-tab-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 0.75rem;
+}
+
+#project-switcher .cs-tab.cs-tab-active .cs-tab-icon {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#project-switcher .cs-tab-icon svg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+#project-switcher .cs-tab-label {
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: 0.025em;
+}
+
+#project-switcher .cs-tab-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+}
+
+/* Project Content */
+.project-content {
+    display: none;
+}
+
+.project-content.project-active {
+    display: block;
+}
+
+/* Section Styles */
+.item-section {
+    padding: var(--sectionPadding);
+    background: #f8fafc;
+}
+
+.item-section.bg-white {
+    background: white;
+}
+
+.item-section.bg-dark {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.item-section .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+}
+
+.item-section .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--headerColor);
+}
+
+.item-section.bg-dark .section-title.light {
+    color: white;
+}
+
+.item-section .section-text {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.7em;
+    color: var(--bodyTextColor);
+    max-width: 70ch;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.item-section.bg-dark .section-text.light {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.item-section .content-block {
+    max-width: 56.25rem;
+    margin: auto;
+}
+
+.item-section .content-block p {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.8em;
+    color: var(--bodyTextColor);
+    margin-bottom: 1.25rem;
+}
+
+.item-section .content-block p:last-child {
+    margin-bottom: 0;
+}
+
+/* Funding Grid */
+.funding-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.funding-card {
+    grid-column: span 12;
+    background: white;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.funding-card.primary-card {
+    border-color: var(--primary);
+    border-width: 2px;
+}
+
+.funding-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.funding-logo {
+    height: 3.125rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.funding-icon {
+    width: 3rem;
+    height: 3rem;
+    background: #0f172a;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.funding-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.funding-amount {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.funding-title {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--headerColor);
+}
+
+.funding-desc {
+    font-size: 0.875rem;
+    line-height: 1.6em;
+    color: var(--bodyTextColor);
+}
+
+/* Architecture Image */
+.image-container {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.arch-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-caption {
+    padding: 1rem 1.5rem;
+    background: #e2e8f0;
+    font-size: 0.875rem;
+    line-height: 1.6em;
+    color: #64748b;
+}
+
+/* Tech Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.tech-card {
+    grid-column: span 12;
+    background: white;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tech-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.tech-icon {
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.tech-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.tech-title {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--headerColor);
+}
+
+.tech-text {
+    font-size: 0.875rem;
+    line-height: 1.6em;
+    color: var(--bodyTextColor);
+}
+
+/* Performance Grid */
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.performance-card {
+    grid-column: span 12;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: clamp(1.5rem, 3vw, 2.5rem) 1.25rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.performance-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.performance-value {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: #00d4ff;
+    margin-bottom: 0.5rem;
+}
+
+.performance-label {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.performance-compare {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Paper Reference */
+.paper-reference {
+    background: rgba(255, 255, 255, 0.08);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--primary);
+}
+
+.paper-reference p {
+    font-size: 0.875rem;
+    line-height: 1.6em;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* Publications Grid */
+.pub-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.pub-card {
+    grid-column: span 12;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pub-year {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 900;
+    color: #00d4ff;
+    margin-bottom: 0.75rem;
+}
+
+.pub-title {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.pub-authors {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+}
+
+.pub-journal {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+/* Publications List (White Background) */
+.pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pub-item {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--primary);
+}
+
+.pub-item .pub-title {
+    font-size: 1.125rem;
+    color: var(--headerColor);
+    margin-bottom: 0.5rem;
+}
+
+.pub-item .pub-authors {
+    font-size: 0.875rem;
+    color: var(--bodyTextColor);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.pub-item .pub-journal {
+    font-size: 0.8125rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.pub-item .pub-desc {
+    font-size: 0.875rem;
+    color: var(--bodyTextColor);
+    line-height: 1.6em;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 56rem;
+    margin: 2rem auto 0;
+    padding-left: 4rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.8) 0%, rgba(0, 212, 255, 0.2) 100%);
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 12px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.timeline-marker::after {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: -14px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.timeline-marker.active {
+    border-left-color: #00d4ff;
+    animation: pulse-arrow 2s infinite;
+}
+
+.timeline-marker.active::after {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.timeline-marker.future {
+    border-left-color: rgba(255, 255, 255, 0.15);
+    opacity: 0.5;
+}
+
+.timeline-marker.future::after {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse-arrow {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(3px);
+        opacity: 0.8;
+    }
+}
+
+.timeline-content {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 1rem;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 12px solid rgba(255, 255, 255, 0.08);
+}
+
+.timeline-content:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #00d4ff;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.timeline-date::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #00d4ff;
+}
+
+.timeline-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.timeline-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.3) 0%, transparent 100%);
+}
+
+.timeline-desc {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7em;
+    padding-left: 0.25rem;
+}
+
+/* Contributors Grid */
+.contributors-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.contributor-card {
+    grid-column: span 12;
+    background: #f8fafc;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contributor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 3px solid var(--primary);
+    background: white;
+}
+
+.contributor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contributor-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--primaryDark));
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.contributor-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contributor-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    margin-bottom: 0.375rem;
+}
+
+.contributor-role {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.contributor-affiliation {
+    font-size: 0.8125rem;
+    color: var(--bodyTextColor);
+}
+
+/* Publications More Button */
+.pub-more {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+.more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.more-btn:hover {
+    background: var(--primaryDark);
+    transform: translateY(-2px);
+}
+
+.more-btn::after {
+    content: '→';
+    font-size: 0.75rem;
+}
+
+.more-btn.dark {
+    background: var(--headerColor);
+}
+
+.more-btn.dark:hover {
+    background: #1e293b;
+}
+
+/* Applications List */
+.applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 56.25rem;
+    margin: auto;
+}
+
+.application-item {
+    display: flex;
+    gap: 1.25rem;
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid var(--primary);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.application-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.application-number {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 900;
+    color: #e2e8f0;
+    flex-shrink: 0;
+}
+
+.application-content {
+    flex: 1;
+}
+
+.application-title {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+    color: var(--headerColor);
+}
+
+.application-text {
+    font-size: 0.875rem;
+    line-height: 1.6em;
+    color: var(--bodyTextColor);
+}
+
+/* Responsive */
+@media only screen and (min-width: 48rem) {
+    .funding-card {
+        grid-column: span 4;
+    }
+    
+    .tech-card {
+        grid-column: span 6;
+    }
+    
+    .performance-card {
+        grid-column: span 6;
+    }
+    
+    .pub-card {
+        grid-column: span 6;
+    }
+    
+    .contributor-card {
+        grid-column: span 4;
+    }
+}
+
+@media only screen and (min-width: 81.25rem) {
+    .tech-card {
+        grid-column: span 3;
+    }
+    
+    .performance-card {
+        grid-column: span 3;
+    }
+    
+    .pub-card {
+        grid-column: span 3;
+    }
+    
+    .contributor-card {
+        grid-column: span 4;
+    }
+}
+
+/* Tab Switching Script */
+</style>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.cs-tab');
+        const contents = document.querySelectorAll('.project-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                tabs.forEach(t => t.classList.remove('cs-tab-active'));
+                contents.forEach(c => c.classList.remove('project-active'));
+                
+                this.classList.add('cs-tab-active');
+                document.getElementById(targetTab + '-content').classList.add('project-active');
+            });
+        });
+    });
+</script>
