@@ -1448,27 +1448,37 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 </style>
 
 <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
+    function initTabSwitcher() {
         const tabsContainer = document.getElementById('project-switcher');
+        if (!tabsContainer) {
+            setTimeout(initTabSwitcher, 100);
+            return;
+        }
         
-        tabsContainer.addEventListener('click', function(e) {
-            const tab = e.target.closest('.cs-tab');
-            if (!tab) return;
-            
-            const targetTab = tab.getAttribute('data-tab');
-            if (!targetTab) return;
-            
-            const tabs = document.querySelectorAll('.cs-tab');
-            const contents = document.querySelectorAll('.project-content');
-            const targetContent = document.getElementById(targetTab + '-content');
-            
-            if (!targetContent) return;
-            
-            tabs.forEach(t => t.classList.remove('cs-tab-active'));
-            contents.forEach(c => c.classList.remove('project-active'));
-            
-            tab.classList.add('cs-tab-active');
-            targetContent.classList.add('project-active');
-        });
-    });
+        tabsContainer.removeEventListener('click', handleTabClick);
+        tabsContainer.addEventListener('click', handleTabClick);
+    }
+    
+    function handleTabClick(e) {
+        const tab = e.target.closest('.cs-tab');
+        if (!tab) return;
+        
+        const targetTab = tab.getAttribute('data-tab');
+        if (!targetTab) return;
+        
+        const targetContent = document.getElementById(targetTab + '-content');
+        if (!targetContent) return;
+        
+        document.querySelectorAll('.cs-tab').forEach(t => t.classList.remove('cs-tab-active'));
+        document.querySelectorAll('.project-content').forEach(c => c.classList.remove('project-active'));
+        
+        tab.classList.add('cs-tab-active');
+        targetContent.classList.add('project-active');
+        
+        e.stopPropagation();
+    }
+    
+    document.addEventListener('DOMContentLoaded', initTabSwitcher);
+    window.addEventListener('load', initTabSwitcher);
+    setTimeout(initTabSwitcher, 500);
 </script>
