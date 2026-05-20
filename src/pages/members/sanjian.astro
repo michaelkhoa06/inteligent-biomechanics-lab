@@ -9,10 +9,18 @@ const member = {
   department: "Intelligent Biomechanics Lab",
 
   shortBio:
-    "Sanjian Zhang is a PhD student in the Intelligent Biomechanics Lab at Kennesaw State University",
+     "Sanjian Zhang is a PhD student at Kennesaw State University, focusing on spatiotemporal modeling for cardiac dynamics and patient-specific cardiovascular digital twins.",
 
-  introduction:
-    "Sanjian Zhang is a PhD student in Computer Science at Kennesaw State University, working in the Intelligent Biomechanics Lab.",
+introduction:
+  "Sanjian Zhang is a PhD student in Interdisciplinary Engineering at Kennesaw State University, working in the Intelligent Biomechanics Lab. His research focuses on modeling and predicting cardiac dynamics using data-driven approaches. Specifically, he studies how to integrate cardiac structures reconstructed from CT/MRI imaging with physiological signals such as blood pressure and clinical variables to model the temporal evolution of cardiac motion across the cardiac cycle. His goal is to develop accurate and reliable models for patient-specific cardiovascular digital twins.His work lies at the intersection of spatiotemporal machine learning, biomedical modeling, and data-driven simulation for real-world healthcare applications.",
+
+  socialLinks: [
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/sanjian-zhang/", icon: "in" },
+    { name: "Google Scholar", url: "https://scholar.google.com/citations?user=ahH0utgAAAAJ&hl=zh-CN&authuser=2", icon: "scholar" },
+    { name: "Github", url: "https://github.com/sanjian-zhang", icon: "github" }
+  ],
+
+  personalWebsite: "https://sanjian-zhang.github.io/",
 
   hobbies: [
     "Hiking",
@@ -36,21 +44,18 @@ const member = {
     {
       title: "Research Interests",
       items: [
-        "Trustworthy Artificial Intelligence",
-        "Privacy-Preserving Computer Vision",
-        "Visual De-identification and Benchmarking",
-        "Multimodal Learning and Foundation Models",
-        "Biomedical AI and Digital Twins",
-        "Deployable Machine Learning Systems"
+        "Trustworthy AI for Cardiovascular Digital Twins",
+    "Spatiotemporal Modeling and Time-Series Prediction",
+    "Biomedical AI for Cardiac Dynamics Modeling",
+    "Multimodal Learning and Foundation Models",
+    "Privacy-Preserving Computer Vision",
+    "Reproducible and Deployable Machine Learning Systems"
       ]
     },
     {
       title: "Selected Projects",
       items: [
-        "Safety-by-Design Visual De-identification Benchmark for evaluating privacy leakage, utility preservation, and perceptual quality in real-world camera systems",
-        "Large-Scale Temporal Graph Modeling for Community Evolution in Blockchain Games (34M+ transactions, 1.3M+ nodes)",
-        "Comprehensive benchmarking and survey of Anti-UAV detection and tracking systems (CVPR 2025 Workshop Best Paper)",
-        "Evaluation frameworks for multimodal and diffusion-based world models"
+        
       ]
     },
     {
@@ -98,7 +103,9 @@ const member = {
 
         <div class="cs-hero-content">
           <span class="cs-topper">Team Member Profile</span>
-          <h1 class="cs-title">{member.fullName}</h1>
+          <h1 class="cs-title">
+            <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+          </h1>
           <p class="cs-role">{member.role}</p>
           <p class="cs-short-bio">{member.shortBio}</p>
 
@@ -117,6 +124,14 @@ const member = {
               <span class="cs-meta-label">Email</span>
               <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
             </div>
+          </div>
+
+          <div class="cs-social-links">
+            {member.socialLinks.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-social-link">
+                {link.name}
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -439,6 +454,17 @@ const member = {
       line-height: 1.1em;
       margin: 0;
       color: var(--headerColor);
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--primary);
+        }
+      }
     }
 
     .cs-role {
@@ -486,6 +512,35 @@ const member = {
       line-height: 1.5em;
       color: var(--headerColor);
       text-decoration: none;
+    }
+
+    .cs-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: (12/16rem);
+      margin-top: (16/16rem);
+    }
+
+    .cs-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: (10/16rem) (20/16rem);
+      border: 1px solid var(--primary);
+      border-radius: (8/16rem);
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: (14/16rem);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: hsl(204, 81%, 35%);
+        border-color: hsl(204, 81%, 35%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+      }
     }
 
     .cs-main-grid {
