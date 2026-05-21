@@ -1448,21 +1448,46 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 </style>
 
 <script is:inline>
+    let initAttempts = 0;
+    const maxAttempts = 20;
+    
     function initTabSwitcher() {
         const tabsContainer = document.getElementById('project-switcher');
-        if (!tabsContainer) {
-            setTimeout(initTabSwitcher, 100);
+        const tabs = document.querySelectorAll('.cs-tab');
+        
+        if (!tabsContainer || tabs.length === 0) {
+            if (initAttempts < maxAttempts) {
+                initAttempts++;
+                setTimeout(initTabSwitcher, 100);
+            }
             return;
         }
         
         tabsContainer.removeEventListener('click', handleTabClick);
         tabsContainer.addEventListener('click', handleTabClick);
+        
+        tabs.forEach(tab => {
+            tab.removeEventListener('click', handleDirectTabClick);
+            tab.addEventListener('click', handleDirectTabClick);
+        });
+        
+        initAttempts = 0;
     }
     
     function handleTabClick(e) {
         const tab = e.target.closest('.cs-tab');
         if (!tab) return;
-        
+        switchTab(tab);
+        e.stopPropagation();
+    }
+    
+    function handleDirectTabClick(e) {
+        switchTab(e.currentTarget);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    
+    function switchTab(tab) {
         const targetTab = tab.getAttribute('data-tab');
         if (!targetTab) return;
         
@@ -1474,11 +1499,13 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
         
         tab.classList.add('cs-tab-active');
         targetContent.classList.add('project-active');
-        
-        e.stopPropagation();
     }
     
     document.addEventListener('DOMContentLoaded', initTabSwitcher);
     window.addEventListener('load', initTabSwitcher);
+    window.addEventListener('pageshow', initTabSwitcher);
+    setTimeout(initTabSwitcher, 100);
+    setTimeout(initTabSwitcher, 300);
     setTimeout(initTabSwitcher, 500);
+    setTimeout(initTabSwitcher, 1000);
 </script>
