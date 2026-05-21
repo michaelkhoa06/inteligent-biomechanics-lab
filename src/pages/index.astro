@@ -8,6 +8,8 @@ import path from "node:path";
 const heroDir = path.resolve(process.cwd(), "public/assets/images/hero");
 const imageExt = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
+const defaultImage = "Image -2.jpg";
+
 const heroImages = fs.existsSync(heroDir)
   ? fs
       .readdirSync(heroDir, { withFileTypes: true })
@@ -16,7 +18,11 @@ const heroImages = fs.existsSync(heroDir)
           entry.isFile() && imageExt.has(path.extname(entry.name).toLowerCase())
       )
       .map((entry) => `/assets/images/hero/${encodeURIComponent(entry.name)}`)
-      .sort()
+      .sort((a, b) => {
+        if (a.includes(defaultImage)) return -1;
+        if (b.includes(defaultImage)) return 1;
+        return a.localeCompare(b);
+      })
   : [];
 ---
 
@@ -32,7 +38,7 @@ const heroImages = fs.existsSync(heroDir)
 <section id="hero-2150">
     <div class="cs-container">
         <div class="cs-content">
-            <span class="cs-topper">Welcome to the...</span>
+            <span class="cs-topper">Welcome to the</span>
             <h1 class="cs-title">Intelligent Biomechanics Lab</h1>
             <p class="cs-text">
                 The Intelligent Biomechanics Lab, where biomechanics meets artificial intelligence.
