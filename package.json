@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "astro": "^6.1.1",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "better-sqlite3": "^12.10.0"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
