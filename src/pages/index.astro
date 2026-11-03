@@ -8,7 +8,8 @@ import path from "node:path";
 const heroDir = path.resolve(process.cwd(), "public/assets/images/hero");
 const imageExt = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
-const defaultImage = "Image -2.jpg";
+// The latest added photo has no date in its filename.
+const newestImage = "pu-yuli.jpeg";
 
 const heroImages = fs.existsSync(heroDir)
   ? fs
@@ -17,12 +18,12 @@ const heroImages = fs.existsSync(heroDir)
         (entry) =>
           entry.isFile() && imageExt.has(path.extname(entry.name).toLowerCase())
       )
-      .map((entry) => `/assets/images/hero/${encodeURIComponent(entry.name)}`)
       .sort((a, b) => {
-        if (a.includes(defaultImage)) return -1;
-        if (b.includes(defaultImage)) return 1;
-        return a.localeCompare(b);
+        if (a.name === newestImage) return -1;
+        if (b.name === newestImage) return 1;
+        return b.name.localeCompare(a.name);
       })
+      .map((entry) => `/assets/images/hero/${encodeURIComponent(entry.name)}`)
   : [];
 
 const newsTopics = [
@@ -35,6 +36,46 @@ const newsTopics = [
 ];
 
 const news = [
+  {
+    date: "2026-10-14",
+    dateLabel: "Oct 14, 2026",
+    tag: "Conference",
+    topics: ["research", "students"],
+    title: "SES 2026: Oral Presentations",
+    images: [
+      { src: "/assets/images/activities/purdue-1.jpeg", alt: "Lab members at Purdue University during SES 2026" },
+      { src: "/assets/images/activities/purdue-2.jpeg", alt: "SES 2026 conference visit at Purdue University" },
+    ],
+    paragraphs: [
+      "Our lab participated in SES 2026, where Yue Li and Nanlong Sun gave oral presentations sharing their research with the mechanics community.",
+    ],
+  },
+  {
+    date: "2026-10-08",
+    dateLabel: "Oct 8, 2026",
+    tag: "First-Year Scholars",
+    topics: ["research", "students"],
+    title: "Welcome Our First-Year Scholars!",
+    images: [
+      { src: "/assets/images/activities/fysp.jpg", alt: "Our First-Year Scholars research team" },
+    ],
+    paragraphs: [
+      "We are excited to welcome our new **First-Year Scholars** to our research team!",
+      "Please join us in welcoming:",
+      "Under the faculty guidance of **Dr. Lei Shi**, and with **Sanjian Zhang** serving as their **Direct Research Mentor**, these scholars will have the opportunity to gain hands-on research experience, develop technical and analytical skills, and explore innovative approaches to engineering and scientific challenges.",
+      "We look forward to supporting their academic growth, encouraging collaboration, and helping them build a strong foundation for their future research careers.",
+      "**Welcome to the team! We are excited to see what you will accomplish!**",
+      "#FirstYearScholars #UndergraduateResearch #ResearchMentorship #EngineeringResearch #KennesawStateUniversity",
+    ],
+    listAfterParagraph: 1,
+    list: [
+      "Ethan Stephens",
+      "Kanyin Omolabi",
+      "Louis Schoonover",
+      "Micah Wiggins",
+      "Samuel Dires",
+    ],
+  },
   {
     date: "2026-09-10",
     dateLabel: "Sep 10, 2026",
@@ -461,12 +502,20 @@ const topicCount = (slug: string) => news.filter((item) => item.topics.includes(
                         </div>
                         <h3 class="cs-news-title">{item.title}</h3>
                         <div class="cs-news-text">
-                            {item.paragraphs.map((p) => <p>{p}</p>)}
-                            {item.list && (
-                                <ul>
-                                    {item.list.map((li) => <li>{li}</li>)}
-                                </ul>
-                            )}
+                            {item.paragraphs.map((p, paragraphIndex) => (
+                                <Fragment>
+                                    <p>{p.split(/(\*\*[^*]+\*\*)/g).map((part) => (
+                                        part.startsWith("**") && part.endsWith("**")
+                                            ? <strong>{part.slice(2, -2)}</strong>
+                                            : part
+                                    ))}</p>
+                                    {item.list && paragraphIndex === (item.listAfterParagraph ?? item.paragraphs.length - 1) && (
+                                        <ul>
+                                            {item.list.map((li) => <li>{li}</li>)}
+                                        </ul>
+                                    )}
+                                </Fragment>
+                            ))}
                         </div>
                         <button type="button" class="cs-read-more" aria-expanded="false" hidden>Read more</button>
                         <ul class="cs-news-topics">

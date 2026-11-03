@@ -1,12 +1,15 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import ResearchVideo from "@components/ResearchVideo.astro";
+import equipment from "src/data/equipment.json";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 // Put a video file in public/assets/videos/ (or paste a YouTube/Vimeo link)
 // and set `src` below. An empty `src` shows a placeholder.
 const videos = {
   ml: {
-    src: "",
+    src: "/assets/videos/heartsim.mp4",
     poster: "",
     title: "HeartSimSage Simulation",
     caption: "Video: HeartSimSage predicting cardiac tissue deformation compared with finite element results.",
@@ -23,13 +26,12 @@ const videos = {
     title: "Soft Tissue Material Response",
     caption: "Video: Simulated tensile response of soft tissue under large deformation.",
   },
-  experiments: {
-    src: "",
-    poster: "",
-    title: "Mechanical Testing in Action",
-    caption: "Video: Tissue specimen tested in the Instron Biopuls biobath.",
-  },
 };
+
+const equipmentItems = equipment.items.map((item) => ({
+  ...item,
+  hasPhoto: existsSync(resolve(process.cwd(), `public${item.image}`)),
+}));
 ---
 
 <BaseLayout
@@ -156,7 +158,6 @@ const videos = {
 
             <div class="area-image">
                 <img src="/assets/images/item/heartsim.png" alt="HeartSimSage Framework Architecture" loading="lazy" decoding="async" />
-                <p class="area-image-caption"><strong>Figure 1:</strong> HeartSimSage framework architecture illustrating the graph-based representation with attention-driven message-passing mechanism.</p>
             </div>
 
             <div class="tech-grid">
@@ -239,38 +240,6 @@ const videos = {
             </ul>
         </div>
 
-        <!-- Undergraduate: How You Can Contribute -->
-        <div class="area-block ug-contribute">
-            <h3 class="block-title ug-contribute-title">How You Can Contribute</h3>
-            <table class="ug-contribute-table">
-                <thead>
-                    <tr>
-                        <th>Direction</th>
-                        <th>What You'd Do</th>
-                        <th>Skills You'd Learn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Data &amp; Visualization</td>
-                        <td>Organize cardiac motion data, plot displacement curves, and help debug data pipelines.</td>
-                        <td class="ug-skills">Python · NumPy · Matplotlib</td>
-                    </tr>
-                    <tr>
-                        <td>Python &amp; Machine Learning</td>
-                        <td>Run baseline models, compare prediction accuracy, and help train small neural networks.</td>
-                        <td class="ug-skills">PyTorch · Google Colab · Git</td>
-                    </tr>
-                    <tr>
-                        <td>Web &amp; Interactive</td>
-                        <td>Build an interactive demo of the cardiac model, a simple web tool that shows simulation results.</td>
-                        <td class="ug-skills">HTML · JavaScript · Three.js basics</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="ug-note">No experience in these tools yet? We'll walk you through it. Bring curiosity and a willingness to learn.</p>
-        </div>
-
         <!-- Interested CTA -->
         <div class="research-interested">
             <div class="interested-left">
@@ -291,6 +260,16 @@ const videos = {
             <div class="area-badge">02</div>
             <div class="area-title-row">
                 <h2 class="section-title">Multiscale &amp; Multiphysics Simulation</h2>
+                <a class="research-lead" href="/members/nanlong/" aria-label="Research lead: Nanlong Sun. View profile.">
+                    <img src="/assets/images/members/nanlong.jpg" alt="" width="44" height="44" loading="lazy" decoding="async" />
+                    <span class="research-lead-info">
+                        <span class="research-lead-label">Research Lead</span>
+                        <span class="research-lead-name">Nanlong Sun</span>
+                    </span>
+                    <svg class="research-lead-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                    </svg>
+                </a>
             </div>
             <p class="section-text">Cross-scale computational modeling and coupled multiphysics simulations, from molecular ion channels to whole-organ electromechanics.</p>
         </div>
@@ -441,6 +420,16 @@ const videos = {
             <div class="area-badge">03</div>
             <div class="area-title-row">
                 <h2 class="section-title">Constitutive Modeling</h2>
+                <a class="research-lead" href="/members/yue/" aria-label="Research lead: Yue Li. View profile.">
+                    <img src="/assets/images/members/lydia.png" alt="" width="44" height="44" loading="lazy" decoding="async" />
+                    <span class="research-lead-info">
+                        <span class="research-lead-label">Research Lead</span>
+                        <span class="research-lead-name">Yue Li</span>
+                    </span>
+                    <svg class="research-lead-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                    </svg>
+                </a>
             </div>
             <p class="section-text">Physics-based material models that capture the complex, nonlinear behavior of biological soft tissues under large deformation.</p>
         </div>
@@ -530,114 +519,81 @@ const videos = {
 </div>
 
 <!-- ============================================ -->
-<!-- 4. Experiments & Mechanical Testing          -->
+<!-- 4. Equipment & Experimental Collaboration    -->
 <!-- ============================================ -->
 <div id="experiments-content" class="research-area area-experiments project-content" role="tabpanel">
     <div class="cs-container">
         <div class="area-header">
             <div class="area-badge">04</div>
             <div class="area-title-row">
-                <h2 class="section-title">Experiments &amp; Mechanical Testing</h2>
-            </div>
-            <p class="section-text">State-of-the-art experimental facilities and protocols for characterizing the mechanical properties of biological tissues.</p>
-        </div>
-
-        <!-- Overview -->
-        <div class="area-block">
-            <h3 class="block-title">Precision Testing &amp; Modeling</h3>
-            <p class="block-text">We combine carefully controlled experiments, advanced instruments like the Instron Biopuls system, and rigorous computational methods to capture how the stomach and GI tract actually behave. Every data point feeds into more realistic digital twins and deeper insight into GI function.</p>
-            <p class="block-text">High-quality science starts with careful planning, attention to detail, and consistent methods. We design each study around clear clinical questions, prepare and test tissue under physiologically relevant conditions, and link experimental results directly to our computational models. From the first specimen in the biobath to the final simulation run, we focus on reproducibility, transparency, and meaningful impact.</p>
-        </div>
-
-        <!-- Core Framework -->
-        <div class="area-block">
-            <h3 class="block-title">Tissue Preparation &amp; Biomechanical Testing</h3>
-            <p class="block-text">We collect and prepare GI tissue samples and use systems like the Instron Biopuls biobath to perform tensile and biaxial tests, measuring stiffness, elasticity, and other mechanical properties. Every specimen is handled with care to preserve native tissue structure and ensure physiologically relevant results.</p>
-
-            <div class="area-image area-image-narrow">
-                <img src="/assets/images/index/index8.png" alt="Instron Biopuls biobath testing setup" loading="lazy" decoding="async" />
-                <p class="area-image-caption"><strong>Figure 1:</strong> Tissue testing in the Instron Biopuls temperature-controlled biobath.</p>
-            </div>
-
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 3h6M10 3v6.2L4.6 18.4A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.6L14 9.2V3"/>
+                <h2 class="section-title">Experiments &amp; Testing</h2>
+                <div class="research-leads">
+                    <a class="research-lead" href="/members/nanlong/" aria-label="Research lead: Nanlong Sun. View profile.">
+                        <img src="/assets/images/members/nanlong.jpg" alt="" width="44" height="44" loading="lazy" decoding="async" />
+                        <span class="research-lead-info">
+                            <span class="research-lead-label">Research Lead</span>
+                            <span class="research-lead-name">Nanlong Sun</span>
+                        </span>
+                        <svg class="research-lead-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                            <path d="M5 12h14m-6-6 6 6-6 6" />
                         </svg>
-                    </div>
-                    <h4 class="tech-title">Instron Biopuls Biobath</h4>
-                    <p class="tech-text">Temperature-controlled physiological solution bath for uniaxial, biaxial, and shear tissue testing.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <path d="M12 3v18M7 7l5-4 5 4M7 17l5 4 5-4"/>
+                    </a>
+                    <a class="research-lead" href="/members/yue/" aria-label="Research lead: Yue Li. View profile.">
+                        <img src="/assets/images/members/lydia.png" alt="" width="44" height="44" loading="lazy" decoding="async" />
+                        <span class="research-lead-info">
+                            <span class="research-lead-label">Research Lead</span>
+                            <span class="research-lead-name">Yue Li</span>
+                        </span>
+                        <svg class="research-lead-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                            <path d="M5 12h14m-6-6 6 6-6 6" />
                         </svg>
-                    </div>
-                    <h4 class="tech-title">5960 Universal Testing Machine</h4>
-                    <p class="tech-text">High-precision force and displacement measurement with sub-micron resolution and temperature control.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/>
-                            <circle cx="12" cy="12" r="3.5"/>
-                        </svg>
-                    </div>
-                    <h4 class="tech-title">Digital Image Correlation (DIC)</h4>
-                    <p class="tech-text">Full-field strain measurement via high-speed camera and stochastic speckle pattern analysis.</p>
+                    </a>
                 </div>
             </div>
+            <p class="section-text">Explore our laboratory equipment and contact us to discuss experimental testing and research collaborations.</p>
         </div>
 
-        <!-- Project Visualization -->
-        <div class="area-block">
-            <h3 class="block-title">Project Visualization</h3>
-            <ResearchVideo {...videos.experiments} />
+        <div class="equipment-list">
+            {equipmentItems.map((item) => (
+                <article class="equipment-row" aria-labelledby={`equipment-${item.id}`}>
+                    <figure class="equipment-photo">
+                        {item.hasPhoto ? (
+                            <img src={item.image} alt={item.imageAlt} width="960" height="720" loading="lazy" decoding="async" />
+                        ) : (
+                            <div class="equipment-photo-placeholder" role="img" aria-label={`${item.name}: equipment overview photo coming soon`}>
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                    <path d="M14.5 4h-5L8 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4z" />
+                                    <circle cx="12" cy="13" r="4" />
+                                </svg>
+                                <span>Equipment overview photo coming soon</span>
+                            </div>
+                        )}
+                    </figure>
+                    <div class="equipment-details">
+                        <h3 id={`equipment-${item.id}`}>{item.name}</h3>
+                        <table class="equipment-table" aria-label={`Model information for ${item.name}`}>
+                            <tbody>
+                                {item.manufacturer && (
+                                    <tr>
+                                        <th scope="row">Manufacturer</th>
+                                        <td>{item.manufacturer}</td>
+                                    </tr>
+                                )}
+                                <tr>
+                                    <th scope="row">Model</th>
+                                    <td>{item.model || <a href="/contact">Contact us for model details</a>}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            ))}
         </div>
 
-        <!-- Testing Process -->
-        <div class="area-block">
-            <h3 class="block-title">Testing Process</h3>
-            <p class="block-text">Our standardized workflow ensures consistent, high-quality mechanical data that feeds directly into constitutive model calibration and simulation validation.</p>
-            <ul class="process-list">
-                <li class="process-item">
-                    <span class="process-num">01</span>
-                    <div>
-                        <h4>Specimen Preparation</h4>
-                        <p>Controlled defrosting, gentle cleaning, and region-of-interest trimming to preserve native tissue structure.</p>
-                    </div>
-                </li>
-                <li class="process-item">
-                    <span class="process-num">02</span>
-                    <div>
-                        <h4>Mounting &amp; Equilibration</h4>
-                        <p>Secure clamping without tissue damage; acclimation to physiological temperature and solution.</p>
-                    </div>
-                </li>
-                <li class="process-item">
-                    <span class="process-num">03</span>
-                    <div>
-                        <h4>System &amp; Data Setup</h4>
-                        <p>Configure load cells, displacement sensors, and DIC cameras; record force, position, and strain fields.</p>
-                    </div>
-                </li>
-                <li class="process-item">
-                    <span class="process-num">04</span>
-                    <div>
-                        <h4>Experiment Run</h4>
-                        <p>Apply controlled loading protocols (ramp, cyclic, stress-relaxation) and capture full mechanical response.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Interested CTA -->
         <div class="research-interested">
             <div class="interested-left">
-                <h3>Interested in This Research?</h3>
-                <p>Tell us your major, year, and what caught your eye. We'll reply within a week.</p>
+                <h3>Interested in Collaborating?</h3>
+                <p>Share your research goals, sample type, testing needs, and expected timeline with our team.</p>
             </div>
             <a href="/contact" class="interested-btn">Contact Dr. Shi</a>
         </div>
@@ -896,6 +852,12 @@ const videos = {
     flex-wrap: wrap;
     gap: 1rem 2rem;
 }
+.research-leads {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+}
 .research-lead {
     display: inline-flex;
     align-items: center;
@@ -989,6 +951,116 @@ const videos = {
     color: #475569;
     line-height: 1.75;
     margin: 0 0 1.25rem;
+}
+
+/* Equipment overview photos and model tables */
+#experiments-content .equipment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#experiments-content .equipment-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.125rem, 2.5vw, 2rem);
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+#experiments-content .equipment-photo {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background: #f5f7fa;
+}
+
+#experiments-content .equipment-photo img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#experiments-content .equipment-photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1.25rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+#experiments-content .equipment-photo-placeholder svg {
+    flex-shrink: 0;
+    color: var(--tab-accent);
+}
+
+#experiments-content .equipment-details {
+    min-width: 0;
+}
+
+#experiments-content .equipment-details h3 {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--headerColor);
+}
+
+#experiments-content .equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+#experiments-content .equipment-table th,
+#experiments-content .equipment-table td {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+}
+
+#experiments-content .equipment-table th {
+    width: 38%;
+    padding-right: 1rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+#experiments-content .equipment-table td {
+    color: var(--headerColor);
+    font-weight: 600;
+}
+
+#experiments-content .equipment-table a {
+    font-size: inherit;
+    color: var(--primary);
+    text-underline-offset: 0.2em;
+}
+
+@media only screen and (max-width: 48rem) {
+    #experiments-content .equipment-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
 }
 
 /* Area images */
@@ -1382,71 +1454,6 @@ const videos = {
 }
 
 /* ============================================ */
-/* How You Can Contribute Table                  */
-/* ============================================ */
-.ug-contribute {
-    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
-    border-radius: 1rem;
-    padding: clamp(1.25rem, 3vw, 2rem);
-    border: 1px solid rgba(14, 165, 233, 0.15);
-}
-.ug-contribute-title {
-    color: var(--primary);
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.ug-contribute-title::before {
-    content: "";
-    width: 4px;
-    height: 1.25rem;
-    background: linear-gradient(180deg, var(--primary), #0ea5e9);
-    border-radius: 2px;
-}
-.ug-contribute-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9375rem;
-    margin-bottom: 0.75rem;
-}
-.ug-contribute-table th {
-    text-align: left;
-    padding: 0.625rem 0.75rem;
-    font-weight: 700;
-    color: var(--headerColor);
-    font-size: 0.8125rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    border-bottom: 2px solid rgba(14, 165, 233, 0.25);
-}
-.ug-contribute-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    vertical-align: top;
-    line-height: 1.5;
-}
-.ug-contribute-table tbody tr:last-child td {
-    border-bottom: none;
-}
-.ug-contribute-table tbody tr:hover td {
-    background: rgba(14, 165, 233, 0.04);
-}
-.ug-skills {
-    white-space: nowrap;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.875rem;
-}
-.ug-note {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin: 0.5rem 0 0;
-    font-style: italic;
-}
-
-/* ============================================ */
 /* Interested in This Research CTA               */
 /* ============================================ */
 .research-interested {
@@ -1487,25 +1494,6 @@ const videos = {
 }
 
 @media (max-width: 48rem) {
-    .ug-contribute-table {
-        font-size: 0.875rem;
-    }
-    .ug-contribute-table th, .ug-contribute-table td {
-        padding: 0.5rem 0.5rem;
-        display: block;
-        width: 100%;
-    }
-    .ug-contribute-table th {
-        border-bottom: none;
-        padding-bottom: 0.25rem;
-    }
-    .ug-contribute-table td {
-        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
-    }
-    .ug-contribute-table tbody tr {
-        display: block;
-        margin-bottom: 0.75rem;
-    }
     .research-interested {
         flex-direction: column;
         text-align: center;

@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "id": "universal-testing-machine",
+      "name": "Universal Testing Machine & BioPuls Biobath",
+      "manufacturer": "Instron",
+      "model": "68SC-1",
+      "image": "/assets/images/equipment/20250801_171117599_iOS.jpg",
+      "imageAlt": "Overview of the Instron 68SC-1 testing machine, BioPuls biobath, and surrounding DIC cameras"
+    },
+    {
+      "id": "cellscale-testing-system",
+      "name": "Biomaterials Testing System",
+      "manufacturer": "CellScale",
+      "model": "",
+      "image": "/assets/images/equipment/20250505_010327205_iOS.jpg",
+      "imageAlt": "Overview of the CellScale biomaterials testing system and camera"
+    },
+    {
+      "id": "cryostat",
+      "name": "Cryostat",
+      "manufacturer": "Sakura",
+      "model": "Tissue-Tek Cryo3 Flex",
+      "image": "/assets/images/equipment/20250505_010211898_iOS.jpg",
+      "imageAlt": "Overview of the Sakura Tissue-Tek Cryo3 Flex cryostat"
+    }
+  ]
+}

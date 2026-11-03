@@ -1,6 +1,153 @@
 ﻿---
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import CTA from "@components/CTA.astro";
+
+type FirstYearScholar = {
+  name: string;
+  image?: string;
+  profile?: string;
+  interests?: string;
+  job?: string;
+};
+
+type ScholarCohort = {
+  year: number;
+  mentor: { name: string; profile: string };
+  students: FirstYearScholar[];
+};
+
+const firstYearCohorts: ScholarCohort[] = [
+  {
+    "year": 2024,
+    "mentor": {
+      "name": "Lei Shi",
+      "profile": "/members/shi"
+    },
+    "students": [
+      {
+        "name": "Chase Soutar",
+        "image": "/assets/images/members/chase.png",
+        "profile": "/members/chase",
+        "interests": "Medical Technologies · Renewable Energy",
+        "job": "Lead Undergraduate Researcher"
+      },
+      {
+        "name": "Maharshi Naik",
+        "image": "/assets/images/members/maharshi.png",
+        "profile": "/members/maharshi",
+        "interests": "Software Engineering"
+      },
+      {
+        "name": "Azam Shahbaz",
+        "image": "/assets/images/members/azam.png",
+        "profile": "/members/azam",
+        "interests": "FPGA Engineering"
+      },
+      {
+        "name": "Oluwafola (Sewa) Olukoya",
+        "image": "/assets/images/members/sewa.png",
+        "profile": "/members/sewa",
+        "interests": "Medicine"
+      },
+      {
+        "name": "Josiah Ware",
+        "image": "/assets/images/members/josiah.png",
+        "profile": "/members/josiah",
+        "interests": "Biomedical Engineering"
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "mentor": {
+      "name": "Yue Li",
+      "profile": "/members/yue"
+    },
+    "students": [
+      {
+        "name": "Ty Johnston",
+        "image": "/assets/images/members/ty.png",
+        "profile": "/members/ty",
+        "interests": "Mechanical Engineering"
+      },
+      {
+        "name": "Aidan Blot",
+        "image": "/assets/images/members/aiden.png",
+        "profile": "/members/aidan",
+        "interests": "Oncology"
+      },
+      {
+        "name": "Yusuf Tekes",
+        "image": "/assets/images/members/yusuf.png",
+        "profile": "/members/yusuf",
+        "interests": "Data Science · Quantitative Finance"
+      },
+      {
+        "name": "Noelia Bermudez",
+        "image": "/assets/images/members/noelia.png",
+        "profile": "/members/noelia",
+        "interests": "Gastroenterology"
+      },
+      {
+        "name": "Curtis Ledford",
+        "image": "/assets/images/members/curtis.png",
+        "profile": "/members/curtis",
+        "interests": "Biomechanics · Aerospace Engineering"
+      },
+      {
+        "name": "Anshu Rao",
+        "image": "/assets/images/members/anshu.png",
+        "profile": "/members/anshu",
+        "interests": "Biotechnology"
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "mentor": {
+      "name": "Sanjian Zhang",
+      "profile": "/members/sanjian"
+    },
+    "students": [
+      {
+        "name": "Ethan Stephens"
+      },
+      {
+        "name": "Kanyin Omolabi"
+      },
+      {
+        "name": "Louis Schoonover"
+      },
+      {
+        "name": "Micah Wiggins"
+      },
+      {
+        "name": "Samuel Dires"
+      }
+    ]
+  }
+];
+
+const firstYearScholarCount = firstYearCohorts.reduce(
+  (total, cohort) => total + cohort.students.length,
+  0,
+);
+
+// Visit details and photos are shared with the existing News announcements.
+const visitingScholars = [
+  {
+    name: "Boyang",
+    image: "/assets/images/activities/activities1.png",
+    imageFit: "cover",
+    imagePosition: "40% center",
+    institution: "Columbia University",
+  },
+  {
+    name: "Hannah",
+    image: "/assets/images/activities/activities4.png",
+    institution: "Columbia University",
+  },
+];
 ---
 
 <BaseLayout
@@ -57,10 +204,10 @@ import CTA from "@components/CTA.astro";
                     <span class="cs-stat-number">2</span>
                     <span class="cs-stat-label">Student Researchers</span>
                 </div>
-                <div class="cs-stat-item cs-stat-alumni">
+                <div class="cs-stat-item cs-stat-scholars">
                     <div class="cs-stat-icon">🎓</div>
-                    <span class="cs-stat-number">11</span>
-                    <span class="cs-stat-label">Alumni</span>
+                    <span class="cs-stat-number">{firstYearScholarCount}</span>
+                    <span class="cs-stat-label">First-Year Scholars</span>
                 </div>
             </div>
         </div>
@@ -202,155 +349,84 @@ import CTA from "@components/CTA.astro";
             </ul>
         </div>
 
-        <!-- Alumni Section -->
-        <div class="cs-category-section">
-            <div class="cs-category-header">
-                <div class="cs-category-icon cs-icon-alumni">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- First-Year Scholars Section -->
+        <section class="cs-category-section" id="first-year-scholars" aria-labelledby="first-year-scholars-title">
+            <div class="cs-category-header cs-scholars-header">
+                <div class="cs-category-icon cs-icon-scholars">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                         <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                     </svg>
                 </div>
-                <h3 class="cs-category-title">Alumni</h3>
+                <h3 class="cs-category-title" id="first-year-scholars-title">First-Year Scholars</h3>
+                <p class="cs-scholars-note">The First-Year Scholars Program pairs first-year students who are interested in research with mentors to engage in an academic year-long research project.</p>
+            </div>
+            {[...firstYearCohorts].sort((a, b) => b.year - a.year).map((cohort) => (
+                <section class="cs-scholar-cohort" aria-labelledby={`scholars-${cohort.year}`}>
+                    <div class="cs-cohort-header">
+                        <h4 class="cs-cohort-year" id={`scholars-${cohort.year}`}>{cohort.year}</h4>
+                        <p class="cs-cohort-mentor">Research Mentor: <a href={cohort.mentor.profile}>{cohort.mentor.name}</a></p>
+                    </div>
+                    <ul class="cs-card-group cs-card-group-scholars">
+                        {cohort.students.map((student) => (
+                            <li class="cs-item cs-item-scholar">
+                                {student.image ? (
+                                    <picture class="cs-picture">
+                                        <source media="(max-width: 600px)" srcset={student.image} />
+                                        <source media="(min-width: 601px)" srcset={student.image} />
+                                        <img loading="lazy" decoding="async" src={student.image} alt={student.name} width="305" height="338" />
+                                    </picture>
+                                ) : (
+                                    <div class="cs-picture cs-picture-placeholder" role="img" aria-label={`${student.name} — photo coming soon`}>
+                                        <span class="cs-initials" aria-hidden="true">{student.name.split(' ').map((part) => part[0]).join('')}</span>
+                                    </div>
+                                )}
+                                <div class="cs-info">
+                                    <span class="cs-name">{student.name}</span>
+                                    {student.job && <span class="cs-job">{student.job}</span>}
+                                    {student.interests && <span class="cs-interests">{student.interests}</span>}
+                                    {student.profile ? (
+                                        <a class="cs-bio-button" href={student.profile}>View Profile</a>
+                                    ) : (
+                                        <span class="cs-interests">Profile coming soon</span>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            ))}
+        </section>
+
+        <!-- Visiting Scholar Section -->
+        <section class="cs-category-section" id="visiting-scholars" aria-labelledby="visiting-scholars-title">
+            <div class="cs-category-header">
+                <div class="cs-category-icon cs-icon-visiting">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M2 12h20M12 2a16 16 0 0 1 0 20 16 16 0 0 1 0-20z"></path>
+                    </svg>
+                </div>
+                <h3 class="cs-category-title" id="visiting-scholars-title">Visiting Scholar</h3>
                 <div class="cs-category-divider"></div>
             </div>
-            <p class="cs-alumni-note">Former lab members who have graduated or moved on to new opportunities.</p>
-            <ul class="cs-card-group cs-card-group-alumni">
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/noelia.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/noelia.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/noelia.png" alt="Noelia Bermudez" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Noelia Bermudez</span>
-                        <span class="cs-interests">Gastroenterology</span>
-                        <a class="cs-bio-button" href="/members/noelia">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/chase.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/chase.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/chase.png" alt="Chase Soutar" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Chase Soutar</span>
-                        <span class="cs-job">Lead Undergraduate Researcher</span>
-                        <span class="cs-interests">Medical Technologies · Renewable Energy</span>
-                        <a class="cs-bio-button" href="/members/chase">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/aiden.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/aiden.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/aiden.png" alt="Aidan Blot" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Aidan Blot</span>
-                        <span class="cs-interests">Oncology</span>
-                        <a class="cs-bio-button" href="/members/aidan">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/ty.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/ty.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/ty.png" alt="Ty Johnston" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Ty Johnston</span>
-                        <span class="cs-interests">Mechanical Engineering</span>
-                        <a class="cs-bio-button" href="/members/ty">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/curtis.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/curtis.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/curtis.png" alt="Curtis Ledford" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Curtis Ledford</span>
-                        <span class="cs-interests">Biomechanics · Aerospace Engineering</span>
-                        <a class="cs-bio-button" href="/members/curtis">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/yusuf.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/yusuf.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/yusuf.png" alt="Yusuf Tekes" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Yusuf Tekes</span>
-                        <span class="cs-interests">Data Science · Quantitative Finance</span>
-                        <a class="cs-bio-button" href="/members/yusuf">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/maharshi.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/maharshi.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/maharshi.png" alt="Maharshi Naik" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Maharshi Naik</span>
-                        <span class="cs-interests">Software Engineering</span>
-                        <a class="cs-bio-button" href="/members/maharshi">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/anshu.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/anshu.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/anshu.png" alt="Anshu Rao" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Anshu Rao</span>
-                        <span class="cs-interests">Biotechnology</span>
-                        <a class="cs-bio-button" href="/members/anshu">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/azam.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/azam.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/azam.png" alt="Azam Shahbaz" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Azam Shahbaz</span>
-                        <span class="cs-interests">FPGA Engineering</span>
-                        <a class="cs-bio-button" href="/members/azam">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/sewa.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/sewa.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/sewa.png" alt="Oluwafola Olukoya" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Oluwafola (Sewa) Olukoya</span>
-                        <span class="cs-interests">Medicine</span>
-                        <a class="cs-bio-button" href="/members/sewa">View Profile</a>
-                    </div>
-                </li>
-                <li class="cs-item cs-item-alumni">
-                    <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/members/josiah.png">
-                        <source media="(min-width: 601px)" srcset="/assets/images/members/josiah.png">
-                        <img loading="lazy" decoding="async" src="/assets/images/members/josiah.png" alt="Josiah Ware" width="305" height="338">
-                    </picture>
-                    <div class="cs-info">
-                        <span class="cs-name">Josiah Ware</span>
-                        <span class="cs-interests">Biomedical Engineering</span>
-                        <a class="cs-bio-button" href="/members/josiah">View Profile</a>
-                    </div>
-                </li>
+            <ul class="cs-card-group">
+                {visitingScholars.map((scholar) => (
+                    <li class="cs-item cs-item-visiting">
+                        <picture class="cs-picture">
+                            <source media="(max-width: 600px)" srcset={scholar.image} />
+                            <source media="(min-width: 601px)" srcset={scholar.image} />
+                            <img loading="lazy" decoding="async" src={scholar.image} alt={`${scholar.name} visiting the lab`} width="305" height="338" style={{ objectFit: scholar.imageFit, objectPosition: scholar.imagePosition }} />
+                        </picture>
+                        <div class="cs-info">
+                            <span class="cs-name">{scholar.name}</span>
+                            <span class="cs-job">Visiting Scholar</span>
+                            <span class="cs-visit-institution">{scholar.institution}</span>
+                        </div>
+                    </li>
+                ))}
             </ul>
-        </div>
+        </section>
 
         <!-- Bottom Section Decoration -->
         <div class="cs-bottom-section">
@@ -701,12 +777,12 @@ import CTA from "@components/CTA.astro";
     background-clip: text;
 }
 
-#meet-team-1435 .cs-stat-alumni {
+#meet-team-1435 .cs-stat-scholars {
     background: linear-gradient(135deg, rgba(100, 116, 139, 0.15), rgba(100, 116, 139, 0.05));
     border-color: rgba(100, 116, 139, 0.3);
 }
 
-#meet-team-1435 .cs-stat-alumni .cs-stat-number {
+#meet-team-1435 .cs-stat-scholars .cs-stat-number {
     background: linear-gradient(135deg, #64748b, #475569);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1284,8 +1360,8 @@ import CTA from "@components/CTA.astro";
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
 }
 
-/* Alumni icon */
-.cs-icon-alumni {
+/* First-Year Scholars icon */
+.cs-icon-scholars {
     background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
 }
 
@@ -1365,28 +1441,109 @@ import CTA from "@components/CTA.astro";
     box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
 }
 
-/* Alumni note */
-.cs-alumni-note {
-    text-align: center;
-    font-size: 0.875rem;
-    color: #64748b;
-    margin: 0 0 1.5rem;
-    font-style: italic;
+/* Default to full visit photos; individual portraits can override the fit. */
+#meet-team-1435 .cs-item-visiting .cs-picture {
+    background-color: #f8f8f8;
 }
 
-/* Alumni cards — slightly muted */
-.cs-item-alumni {
+#meet-team-1435 .cs-item-visiting .cs-picture img {
+    object-fit: contain;
+    object-position: center;
+}
+
+.cs-visit-institution {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--bodyTextColor);
+}
+
+/* First-Year Scholars program introduction */
+#meet-team-1435 .cs-scholars-header {
+    flex-wrap: wrap;
+}
+
+#meet-team-1435 .cs-scholars-header .cs-category-title {
+    flex-shrink: 0;
+}
+
+.cs-scholars-note {
+    flex: 1 1 24rem;
+    min-width: 0;
+    font-size: 0.6875rem;
+    line-height: 1.6;
+    color: var(--bodyTextColor);
+    margin: 0;
+}
+
+.cs-scholar-cohort {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+}
+
+.cs-scholar-cohort + .cs-scholar-cohort {
+    margin-top: 1.5rem;
+}
+
+.cs-cohort-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.cs-cohort-year {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #64748b, #475569);
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+}
+
+.cs-cohort-mentor {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--bodyTextColor);
+}
+
+.cs-cohort-mentor a {
+    color: var(--headerColor);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.cs-cohort-mentor a:hover,
+.cs-cohort-mentor a:focus-visible {
+    color: var(--primary);
+}
+
+/* Scholar cards — preserve the existing member card styling */
+#meet-team-1435 .cs-item-scholar {
+    justify-content: flex-start;
+}
+
+.cs-item-scholar {
     opacity: 0.78;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.cs-item-alumni:hover {
+.cs-item-scholar:hover {
     opacity: 1;
     transform: translateY(-3px);
 }
-.cs-item-alumni .cs-picture img {
+.cs-item-scholar .cs-picture img {
     filter: saturate(0.85);
 }
-.cs-item-alumni .cs-bio-button {
+.cs-item-scholar .cs-bio-button {
     font-size: 0.75rem;
     padding: 0.375rem 0.875rem;
     border-radius: 999px;
@@ -1397,7 +1554,7 @@ import CTA from "@components/CTA.astro";
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
 }
-.cs-item-alumni .cs-bio-button:hover {
+.cs-item-scholar .cs-bio-button:hover {
     background: var(--primary);
     color: #fff;
 }
