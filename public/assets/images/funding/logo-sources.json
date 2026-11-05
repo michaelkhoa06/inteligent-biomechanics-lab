@@ -1,0 +1,8 @@
+{
+  "/assets/images/funding/nih-logo-white.png": "https://www.ncbi.nlm.nih.gov/core/assets/style-guide/img/nih-logo-white.png",
+  "/assets/images/funding/nsf-logo-official.png": "https://www.nsf.gov/themes/custom/nsf_theme/components/molecules/logo/logo-desktop.png",
+  "/assets/images/funding/nsf-wordmark-white.svg": "https://www.nsf.gov/themes/custom/nsf_theme/components/molecules/logo/logo-wordmark--white.svg",
+  "/assets/images/PartnerInstitutions/ksu-logo-white.svg": "https://www.kennesaw.edu/webstatic/_resources/images/template/ksu_horizontal_white.svg",
+  "_ksu_note": "Official standard logo paths are unchanged. SVG viewBox and dimensions corrected to the full path bounds.",
+  "/assets/images/PartnerInstitutions/emory-logo-white.svg": "https://www.emory.edu/sites/emorymain/files/logos/logo-light.svg"
+}

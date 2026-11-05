@@ -1,0 +1,22 @@
+[
+  {
+    "key": "News",
+    "url": "/"
+  },
+  {
+    "key": "Members",
+    "url": "/members/"
+  },
+  {
+    "key": "Research",
+    "url": "/research/"
+  },
+  {
+    "key": "Tutorials",
+    "url": "/tutorials/"
+  },
+  {
+    "key": "Publications",
+    "url": "/publications/"
+  }
+]

@@ -1,0 +1,167 @@
+---
+import "@styles/research/equipment.less";
+
+interface EquipmentPhoto {
+  src: string;
+  alt: string;
+}
+
+interface EquipmentSpecification {
+  label: string;
+  value: string;
+}
+
+interface EquipmentNameplate {
+  image: string;
+  imageAlt: string;
+  records: EquipmentSpecification[];
+  calibration?: {
+    printedOn: string;
+    dueDate: string;
+    note: string;
+    entries: { quantity: string; transducerId: string; standard: string; certificate: string }[];
+  };
+}
+
+interface EquipmentItem {
+  id: string;
+  name: string;
+  manufacturer?: string;
+  model?: string;
+  image: string;
+  imageAlt: string;
+  hasPhoto: boolean;
+  photos?: EquipmentPhoto[];
+  category?: string;
+  specifications?: EquipmentSpecification[];
+  nameplate?: EquipmentNameplate;
+}
+
+interface Props {
+  items: EquipmentItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="equipment-gallery" data-equipment-gallery>
+  <div class="equipment-card-grid">
+    {items.map((item) => {
+      const otherPhotos = (item.photos ?? []).filter((photo) => photo.src && photo.src !== item.image);
+      return (
+        <article class="equipment-card" data-equipment-card data-equipment-id={item.id} aria-labelledby={`equipment-${item.id}`}>
+          <div class="equipment-card-media">
+            {item.hasPhoto ? (
+              <button
+                class="equipment-image-button"
+                type="button"
+                data-equipment-view
+                data-image={item.image}
+                data-alt={item.imageAlt}
+                data-title={item.name}
+                aria-label={`View full photo of ${item.name}`}
+                aria-haspopup="dialog"
+              >
+                <img data-equipment-image src={item.image} alt={item.imageAlt} width="960" height="720" loading="lazy" decoding="async" />
+              </button>
+            ) : (
+              <div class="equipment-image-placeholder" role="img" aria-label={`${item.name}: photo coming soon`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <path d="M14.5 4h-5L8 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+                <span>Photo coming soon</span>
+              </div>
+            )}
+          </div>
+
+          {otherPhotos.length > 0 && (
+            <div class="equipment-extra-photos" aria-label={`Additional photos of ${item.name}`}>
+              {otherPhotos.map((photo, photoIndex) => (
+                <button
+                  type="button"
+                  data-equipment-view
+                  data-image={photo.src}
+                  data-alt={photo.alt}
+                  data-title={item.name}
+                  aria-label={`View additional photo ${photoIndex + 1} of ${item.name}`}
+                  aria-haspopup="dialog"
+                >
+                  <img src={photo.src} alt={photo.alt} width="120" height="90" loading="lazy" decoding="async" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div class="equipment-card-body">
+            {item.category && <p class="equipment-card-category">{item.category}</p>}
+            <h3 id={`equipment-${item.id}`}>{item.name}</h3>
+            {(item.manufacturer || item.model || item.specifications?.length) ? (
+              <dl class="equipment-specifications">
+                {item.manufacturer && <div><dt>Manufacturer</dt><dd>{item.manufacturer}</dd></div>}
+                {item.model && <div><dt>Model</dt><dd>{item.model}</dd></div>}
+                {item.specifications?.map((specification) => (
+                  <div><dt>{specification.label}</dt><dd>{specification.value}</dd></div>
+                ))}
+              </dl>
+            ) : (
+              <p class="equipment-details-note"><a href="/contact/">Contact us for details</a></p>
+            )}
+            {item.nameplate && (
+              <details class="equipment-nameplate">
+                <summary>Nameplate details</summary>
+                <div class="equipment-nameplate-content">
+                  <p class="equipment-nameplate-source">Information transcribed from the equipment nameplate.</p>
+                  <button
+                    class="equipment-button equipment-button-secondary"
+                    type="button"
+                    data-equipment-view
+                    data-image={item.nameplate.image}
+                    data-alt={item.nameplate.imageAlt}
+                    data-title={`${item.name}: nameplate`}
+                    aria-label={`View nameplate of ${item.name}`}
+                    aria-haspopup="dialog"
+                  >View nameplate photo</button>
+                  <dl class="equipment-nameplate-records">
+                    {item.nameplate.records.map((record) => (
+                      <div><dt>{record.label}</dt><dd>{record.value}</dd></div>
+                    ))}
+                  </dl>
+                  {item.nameplate.calibration && (
+                    <section class="equipment-calibration" aria-labelledby={`calibration-${item.id}`}>
+                      <h4 id={`calibration-${item.id}`}>Calibration label record</h4>
+                      <dl class="equipment-nameplate-records equipment-label-dates">
+                        <div><dt>Label printed</dt><dd>{item.nameplate.calibration.printedOn}</dd></div>
+                        <div><dt>Due date on label</dt><dd>{item.nameplate.calibration.dueDate}</dd></div>
+                      </dl>
+                      <p class="equipment-calibration-note">{item.nameplate.calibration.note}</p>
+                      <dl class="equipment-calibration-entries">
+                        {item.nameplate.calibration.entries.map((entry) => (
+                          <div>
+                            <dt>{entry.quantity}<span>{entry.standard}</span></dt>
+                            <dd><span>Transducer ID</span>{entry.transducerId}</dd>
+                            <dd><span>Certificate no.</span>{entry.certificate}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </section>
+                  )}
+                </div>
+              </details>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</div>
+
+<dialog id="equipment-viewer" class="equipment-dialog equipment-viewer" aria-labelledby="equipment-viewer-title">
+  <div class="equipment-dialog-heading">
+    <h2 id="equipment-viewer-title">Equipment photo</h2>
+    <button class="equipment-dialog-close" data-equipment-close type="button" aria-label="Close photo viewer" autofocus>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
+    </button>
+  </div>
+  <div class="equipment-viewer-image-wrap"><img id="equipment-viewer-image" alt="" /></div>
+</dialog>

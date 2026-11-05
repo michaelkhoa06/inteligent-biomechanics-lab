@@ -1,0 +1,47 @@
+---
+import navData from "@data/navigation.json";
+---
+<!-- ============================================ -->
+<!--                 Navigation                   -->
+<!-- ============================================ -->
+
+<header id="cs-navigation">
+    <div class="cs-container">
+        <!--Nav Logo-->
+        <a href="/" class="cs-logo" aria-label="back to home">
+            <img src="/assets/bioheartWhiteResize.png" alt="logo" width="197" height="43" aria-hidden="true" decoding="async">
+        </a>
+        <!--Navigation List-->
+        <nav class="cs-nav" role="navigation">
+            <!--Mobile Nav Toggle-->
+            <button class="cs-toggle" aria-label="mobile menu toggle" aria-controls="cs-expanded-ul" aria-expanded="false">
+                <div class="cs-box" aria-hidden="true">
+                    <span class="cs-line cs-line1" aria-hidden="true"></span>
+                    <span class="cs-line cs-line2" aria-hidden="true"></span>
+                    <span class="cs-line cs-line3" aria-hidden="true"></span>
+                </div>
+            </button>
+            <div class="cs-ul-wrapper">
+                <ul id="cs-expanded-ul" class="cs-ul">
+                  {navData.map((entry) => (
+                    <li class="cs-li">
+                        <a
+                          href={entry.url}
+                          class:list={["cs-li-link", { "cs-active": Astro.url.pathname === entry.url }]}
+                          aria-current={Astro.url.pathname === entry.url ? "page" : undefined}
+                        >
+                          {entry.key}
+                        </a>
+                    </li>
+                  ))}
+                </ul>
+            </div>
+        </nav>
+        <a href="/contact" class="cs-button-solid cs-nav-button">Contact Us</a>
+    </div>
+</header>
+
+
+<style lang="less">
+  @import "../../styles/layout/header.less";
+</style>

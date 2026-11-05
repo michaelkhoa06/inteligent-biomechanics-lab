@@ -3,26 +3,137 @@
     {
       "id": "universal-testing-machine",
       "name": "Universal Testing Machine & BioPuls Biobath",
+      "category": "Mechanical testing",
       "manufacturer": "Instron",
       "model": "68SC-1",
       "image": "/assets/images/equipment/20250801_171117599_iOS.jpg",
-      "imageAlt": "Overview of the Instron 68SC-1 testing machine, BioPuls biobath, and surrounding DIC cameras"
+      "imageAlt": "Instron 68SC-1 testing machine with BioPuls biobath and surrounding cameras",
+      "nameplate": {
+        "image": "/assets/images/equipment/nameplates/instron-68sc-1.png",
+        "imageAlt": "Instron 68SC-1 model plate and calibration label printed on 02 Apr 2024",
+        "records": [
+          {
+            "label": "System ID",
+            "value": "68SC1B30167"
+          }
+        ],
+        "calibration": {
+          "printedOn": "02 Apr 2024",
+          "dueDate": "02 Apr 2025",
+          "note": "These dates and records are transcribed from the photographed label. They do not establish the current calibration status.",
+          "entries": [
+            {
+              "quantity": "Force",
+              "transducerId": "2530-50N/173580",
+              "standard": "ASTM E4",
+              "certificate": "153040224110509"
+            },
+            {
+              "quantity": "Displacement",
+              "transducerId": "68SC1B30167",
+              "standard": "ASTM E2309",
+              "certificate": "153040224123703"
+            },
+            {
+              "quantity": "Speed",
+              "transducerId": "68SC1B30167",
+              "standard": "ASTM E2658",
+              "certificate": "153040224134102"
+            }
+          ]
+        }
+      }
     },
     {
-      "id": "cellscale-testing-system",
-      "name": "Biomaterials Testing System",
-      "manufacturer": "CellScale",
-      "model": "",
-      "image": "/assets/images/equipment/20250505_010327205_iOS.jpg",
-      "imageAlt": "Overview of the CellScale biomaterials testing system and camera"
+      "id": "optical-coherence-tomography",
+      "name": "Optical Coherence Tomography (OCT)",
+      "category": "Imaging",
+      "manufacturer": "Lumedica",
+      "model": "OQ LABSCOPE 3.0",
+      "image": "/assets/images/equipment/OCT.jpeg",
+      "imageAlt": "Lumedica optical coherence tomography system on the laboratory bench",
+      "specifications": [
+        {
+          "label": "Year of manufacture",
+          "value": "2025"
+        },
+        {
+          "label": "Power supply",
+          "value": "12 V DC"
+        },
+        {
+          "label": "Rated power",
+          "value": "102 W"
+        },
+        {
+          "label": "Intended use",
+          "value": "Research use only"
+        }
+      ],
+      "nameplate": {
+        "image": "/assets/images/equipment/nameplates/lumedica-oq-labscope-3.png",
+        "imageAlt": "Lumedica OQ LABSCOPE 3.0 nameplate showing serial number OQL-03-0109, manufacture year 2025, 12 V DC supply and 102 W rated power",
+        "records": [
+          {
+            "label": "Serial number",
+            "value": "OQL-03-0109"
+          }
+        ]
+      }
     },
     {
       "id": "cryostat",
       "name": "Cryostat",
+      "category": "Sample preparation",
       "manufacturer": "Sakura",
       "model": "Tissue-Tek Cryo3 Flex",
       "image": "/assets/images/equipment/20250505_010211898_iOS.jpg",
-      "imageAlt": "Overview of the Sakura Tissue-Tek Cryo3 Flex cryostat"
+      "imageAlt": "Sakura Tissue-Tek Cryo3 Flex cryostat"
+    },
+    {
+      "id": "cellscale-testing-system",
+      "name": "Biomaterials Testing System",
+      "category": "Mechanical testing",
+      "manufacturer": "CellScale",
+      "model": "",
+      "image": "/assets/images/equipment/Biomaterials Testing System.jpg",
+      "imageAlt": "CellScale biomaterials testing system with its camera and specimen stage"
+    },
+    {
+      "id": "research-microscope",
+      "name": "Research Microscope",
+      "category": "Imaging",
+      "manufacturer": "Olympus",
+      "model": "",
+      "image": "/assets/images/equipment/Research Microscope.jpeg",
+      "imageAlt": "Olympus research microscope in the laboratory"
+    },
+    {
+      "id": "sterilmatic-sterilizer",
+      "name": "Automatic Sterilmatic Sterilizer",
+      "category": "Sample preparation",
+      "manufacturer": "Market Forge",
+      "model": "",
+      "image": "/assets/images/equipment/Automatic Sterilmatic Sterilizer.jpeg",
+      "imageAlt": "Market Forge Sterilmatic sterilizer with its control panel and chamber"
+    },
+    {
+      "id": "isotemp-freezer",
+      "name": "Isotemp Freezer",
+      "category": "Storage",
+      "manufacturer": "Fisherbrand",
+      "model": "",
+      "image": "/assets/images/equipment/Image.jpeg",
+      "imageAlt": "Fisherbrand Isotemp freezer in the laboratory"
+    },
+    {
+      "id": "cold-storage-cabinet",
+      "name": "Cold Storage Cabinet",
+      "category": "Storage",
+      "manufacturer": "VWR",
+      "model": "",
+      "image": "/assets/images/equipment/Image (1).jpeg",
+      "imageAlt": "VWR cold storage cabinet in the laboratory"
     }
   ]
 }

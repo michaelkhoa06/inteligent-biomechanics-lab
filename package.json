@@ -1,5 +1,5 @@
 {
-  "name": "base-template-1",
+  "name": "intelligent-biomechanics-lab",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -8,16 +8,16 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch:pubs": "node scripts/fetch-publications.js"
+    "fetch:pubs": "node scripts/fetch-publications.js",
+    "build:offline": "astro build",
+    "check": "node scripts/check-site.mjs"
   },
   "dependencies": {
-    "astro": "^6.1.1",
-    "astro-icon": "^1.1.5",
-    "better-sqlite3": "^12.10.0",
-    "isomorphic-git": "^1.42.2"
+    "astro": "^6.1.1"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "less": "^4.3.0"
-  }
+  },
+  "private": true
 }

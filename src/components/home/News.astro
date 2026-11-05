@@ -1,0 +1,396 @@
+---
+import { news, newsTopics } from "@data/news";
+
+const topicLabel = Object.fromEntries(newsTopics.map((t) => [t.slug, t.label]));
+const topicCount = (slug: string) => news.filter((item) => item.topics.includes(slug)).length;
+---
+
+<section id="news-page">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">News</span>
+            <h2 class="cs-title">Lab Highlights & Milestones</h2>
+            <p class="cs-text">From hands-on testing sessions to internal training and visiting collaborators,
+                these highlights reflect the day-to-day work that drives the Intelligent Biomechanics Lab forward.</p>
+        </div>
+
+        <div class="cs-news-toolbar">
+            <div class="cs-news-filters" role="group" aria-label="Filter news by topic">
+                <button type="button" class="cs-filter-chip is-active" data-topic="all" aria-pressed="true">
+                    All <span class="cs-chip-count">{news.length}</span>
+                </button>
+                {newsTopics.map((topic) => (
+                    <button type="button" class="cs-filter-chip" data-topic={topic.slug} aria-pressed="false">
+                        {topic.label} <span class="cs-chip-count">{topicCount(topic.slug)}</span>
+                    </button>
+                ))}
+            </div>
+            <div class="cs-news-controls">
+                <label class="cs-news-search">
+                    <span class="cs-visually-hidden">Search news</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14" />
+                    </svg>
+                    <input type="search" id="news-search" placeholder="Search by keyword" autocomplete="off" />
+                </label>
+                <label class="cs-news-sort">
+                    <span class="cs-visually-hidden">Sort news</span>
+                    <select id="news-sort">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="cs-news-results-header">
+            <p class="cs-news-status" id="news-status" aria-live="polite" aria-atomic="true"></p>
+            <nav class="cs-pagination cs-pagination-top" data-news-pagination aria-label="News pagination, top" hidden></nav>
+        </div>
+
+        <div class="cs-news-list" id="news-list">
+            {news.map((item) => (
+                <article class="cs-news-item" data-date={item.date} data-topics={item.topics.join(" ")}>
+                    <div class:list={["cs-news-media", { "is-contain": item.fit === "contain" }]}>
+                        {item.images.length > 1 ? (
+                            <div class="cs-carousel" tabindex="0" aria-roledescription="carousel" aria-label={`${item.title} photos`}>
+                                <div class="cs-carousel-track">
+                                    {item.images.map((img) => (
+                                        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                                    ))}
+                                </div>
+                                <button type="button" class="cs-carousel-btn cs-carousel-prev" aria-label="Previous photo">&#10094;</button>
+                                <button type="button" class="cs-carousel-btn cs-carousel-next" aria-label="Next photo">&#10095;</button>
+                                <div class="cs-carousel-dots">
+                                    {item.images.map((_, i) => (
+                                        <button type="button" class:list={["cs-carousel-dot", { "is-active": i === 0 }]} aria-label={`Photo ${i + 1}`}></button>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <img src={item.images[0].src} alt={item.images[0].alt} loading="lazy" decoding="async" />
+                        )}
+                    </div>
+                    <div class="cs-news-body">
+                        <div class="cs-meta">
+                            <time class="cs-date" datetime={item.date}>{item.dateLabel}</time>
+                            <span class="cs-tag">{item.tag}</span>
+                        </div>
+                        <h3 class="cs-news-title" tabindex="-1">{item.title}</h3>
+                        <div class="cs-news-text">
+                            {item.paragraphs.map((p, paragraphIndex) => (
+                                <Fragment>
+                                    <p>{p.split(/(\*\*[^*]+\*\*)/g).map((part) => (
+                                        part.startsWith("**") && part.endsWith("**")
+                                            ? <strong>{part.slice(2, -2)}</strong>
+                                            : part
+                                    ))}</p>
+                                    {item.list && paragraphIndex === (item.listAfterParagraph ?? item.paragraphs.length - 1) && (
+                                        <ul>
+                                            {item.list.map((li) => <li>{li}</li>)}
+                                        </ul>
+                                    )}
+                                </Fragment>
+                            ))}
+                        </div>
+                        <button type="button" class="cs-read-more" aria-expanded="false" hidden>Read more</button>
+                        <ul class="cs-news-topics">
+                            {item.topics.map((slug) => (
+                                <li><button type="button" class="cs-topic-link" data-topic={slug}>#{topicLabel[slug]}</button></li>
+                            ))}
+                        </ul>
+                    </div>
+                </article>
+            ))}
+        </div>
+
+        <div class="cs-news-empty" id="news-empty" hidden>
+            <p>No news matches your search.</p>
+            <button type="button" class="cs-news-reset" id="news-reset">Clear filters</button>
+        </div>
+
+        <nav class="cs-pagination" id="news-pagination" data-news-pagination aria-label="News pagination, bottom" hidden></nav>
+    </div>
+</section>
+
+<style lang="less">
+  @import "../../styles/home/news.less";
+</style>
+
+<script>
+  const ITEMS_PER_PAGE = 5;
+
+  function initCarousel(carousel: HTMLElement) {
+    const track = carousel.querySelector<HTMLElement>(".cs-carousel-track");
+    if (!track) return;
+    const total = track.querySelectorAll("img").length;
+    const dots = carousel.querySelectorAll(".cs-carousel-dot");
+    let current = 0;
+
+    const goTo = (index: number) => {
+      current = (index + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === current));
+    };
+
+    carousel.querySelector(".cs-carousel-prev")?.addEventListener("click", () => goTo(current - 1));
+    carousel.querySelector(".cs-carousel-next")?.addEventListener("click", () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+    carousel.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") goTo(current - 1);
+      if (e.key === "ArrowRight") goTo(current + 1);
+    });
+
+    let startX = 0;
+    track.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener("touchend", (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+  }
+
+  function setExpanded(text: HTMLElement, button: HTMLElement, expanded: boolean) {
+    button.setAttribute("aria-expanded", String(expanded));
+    button.textContent = expanded ? "Show less" : "Read more";
+
+    if (expanded) {
+      text.classList.add("is-expanded");
+      text.style.maxHeight = `${text.scrollHeight}px`;
+      text.addEventListener("transitionend", () => {
+        if (text.classList.contains("is-expanded")) text.style.maxHeight = "none";
+      }, { once: true });
+    } else {
+      text.style.maxHeight = `${text.scrollHeight}px`;
+      void text.offsetHeight;
+      text.classList.remove("is-expanded");
+      text.style.maxHeight = "";
+    }
+  }
+
+  // Only show "Read more" when the text is actually taller than the collapsed height
+  function measureCollapsible(item: HTMLElement) {
+    const text = item.querySelector<HTMLElement>(".cs-news-text");
+    const button = item.querySelector<HTMLElement>(".cs-read-more");
+    if (!text || !button || text.classList.contains("is-expanded")) return;
+
+    text.classList.remove("is-collapsible");
+    const fullHeight = text.scrollHeight;
+    text.classList.add("is-collapsible");
+    const needsToggle = fullHeight > text.clientHeight + 24;
+
+    text.classList.toggle("is-collapsible", needsToggle);
+    button.hidden = !needsToggle;
+  }
+
+  function initNews() {
+    const section = document.getElementById("news-page");
+    if (!section || section.dataset.newsInit === "true") return;
+    section.dataset.newsInit = "true";
+
+    const list = document.getElementById("news-list") as HTMLElement;
+    const paginations = section.querySelectorAll<HTMLElement>("[data-news-pagination]");
+    const status = document.getElementById("news-status") as HTMLElement;
+    const empty = document.getElementById("news-empty") as HTMLElement;
+    const search = document.getElementById("news-search") as HTMLInputElement;
+    const sort = document.getElementById("news-sort") as HTMLSelectElement;
+    const chips = section.querySelectorAll<HTMLButtonElement>(".cs-filter-chip");
+    const items = Array.from(list.querySelectorAll<HTMLElement>(".cs-news-item"));
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedPage = Number(params.get("page") || "1");
+    const requestedTopic = params.get("topic") || "all";
+    const state = {
+      topic: Array.from(chips).some((chip) => chip.dataset.topic === requestedTopic) ? requestedTopic : "all",
+      query: (params.get("q") || "").trim(),
+      sort: params.get("sort") === "oldest" ? "oldest" : "newest",
+      page: Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1,
+    };
+    search.value = state.query;
+    sort.value = state.sort;
+    const controller = new AbortController();
+    let searchTimer: ReturnType<typeof setTimeout> | undefined;
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+    document.addEventListener("astro:before-swap", () => {
+      controller.abort();
+      clearTimeout(searchTimer);
+      clearTimeout(resizeTimer);
+      delete section.dataset.newsInit;
+    }, { once: true });
+
+    items.forEach((item) => {
+      const carousel = item.querySelector<HTMLElement>(".cs-carousel");
+      if (carousel) initCarousel(carousel);
+
+      const text = item.querySelector<HTMLElement>(".cs-news-text");
+      const button = item.querySelector<HTMLElement>(".cs-read-more");
+      button?.addEventListener("click", () => {
+        if (!text) return;
+        const expanded = button.getAttribute("aria-expanded") !== "true";
+        setExpanded(text, button, expanded);
+        if (!expanded && item.getBoundingClientRect().top < 0) {
+          item.scrollIntoView({ block: "start" });
+        }
+      });
+
+      item.querySelectorAll<HTMLElement>(".cs-topic-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          setTopic(link.dataset.topic || "all");
+          list.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    });
+
+    const searchText = new Map(
+      items.map((item) => [item, Array.from(item.querySelectorAll(".cs-news-title, .cs-news-text, .cs-meta, .cs-news-topics"))
+        .map((content) => content.textContent || "").join(" ").toLowerCase().replace(/\s+/g, " ")])
+    );
+
+    function matches(item: HTMLElement) {
+      const topics = (item.dataset.topics || "").split(" ");
+      if (state.topic !== "all" && !topics.includes(state.topic)) return false;
+      const words = state.query.toLowerCase().split(/\s+/).filter(Boolean);
+      const haystack = searchText.get(item) || "";
+      return words.every((word) => haystack.includes(word));
+    }
+
+    function writeURL(fromInteraction: boolean) {
+      const url = new URL(window.location.href);
+      const values = {
+        page: state.page > 1 ? String(state.page) : "",
+        topic: state.topic === "all" ? "" : state.topic,
+        q: state.query,
+        sort: state.sort === "newest" ? "" : state.sort,
+      };
+      Object.entries(values).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, value);
+        else url.searchParams.delete(key);
+      });
+      if (fromInteraction) url.hash = "news-page";
+      if (url.href !== window.location.href) history.replaceState(history.state, "", url);
+    }
+
+    function render(scroll = false, fromInteraction = false) {
+      const sorted = [...items].sort((a, b) => {
+        const diff = (a.dataset.date || "").localeCompare(b.dataset.date || "");
+        return state.sort === "oldest" ? diff : -diff;
+      });
+      sorted.forEach((item) => list.appendChild(item));
+
+      const visible = sorted.filter(matches);
+      const totalPages = Math.max(1, Math.ceil(visible.length / ITEMS_PER_PAGE));
+      state.page = Math.min(Math.max(1, state.page), totalPages);
+      const start = (state.page - 1) * ITEMS_PER_PAGE;
+      const pageItems = new Set(visible.slice(start, start + ITEMS_PER_PAGE));
+
+      items.forEach((item) => { item.hidden = !pageItems.has(item); });
+      pageItems.forEach(measureCollapsible);
+
+      empty.hidden = visible.length > 0;
+      status.textContent = visible.length
+        ? `Page ${state.page} of ${totalPages} · Showing ${start + 1}–${start + pageItems.size} of ${visible.length} ${visible.length === 1 ? "story" : "stories"}`
+        : "Showing 0 stories";
+      chips.forEach((chip) => {
+        const active = chip.dataset.topic === state.topic;
+        chip.classList.toggle("is-active", active);
+        chip.setAttribute("aria-pressed", String(active));
+      });
+      writeURL(fromInteraction);
+      paginations.forEach((pagination) => renderPagination(pagination, totalPages, visible.length > 0));
+
+      if (scroll) {
+        const firstHeading = visible[start]?.querySelector<HTMLElement>(".cs-news-title");
+        firstHeading?.focus({ preventScroll: true });
+        list.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
+      }
+    }
+
+    function renderPagination(pagination: HTMLElement, totalPages: number, hasResults: boolean) {
+      pagination.replaceChildren();
+      pagination.hidden = !hasResults || totalPages < 2;
+      if (pagination.hidden) return;
+
+      const addButton = (label: string, page: number, opts: { disabled?: boolean; active?: boolean; aria?: string } = {}) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = label;
+        btn.disabled = !!opts.disabled;
+        btn.setAttribute("aria-controls", "news-list");
+        if (opts.aria) btn.setAttribute("aria-label", opts.aria);
+        if (opts.active) {
+          btn.classList.add("cs-page-active");
+          btn.setAttribute("aria-current", "page");
+        }
+        btn.addEventListener("click", () => {
+          if (state.page === page) return;
+          state.page = page;
+          render(true, true);
+        });
+        pagination.appendChild(btn);
+      };
+
+      addButton("‹ Prev", state.page - 1, { disabled: state.page === 1, aria: "Previous page" });
+
+      const pages = new Set([1, totalPages]);
+      for (let i = state.page - 1; i <= state.page + 1; i++) {
+        if (i >= 1 && i <= totalPages) pages.add(i);
+      }
+      const sortedPages = [...pages].sort((a, b) => a - b);
+
+      sortedPages.forEach((page, idx) => {
+        if (idx > 0 && page - sortedPages[idx - 1] > 1) {
+          const gap = document.createElement("span");
+          gap.className = "cs-page-ellipsis";
+          gap.textContent = "…";
+          pagination.appendChild(gap);
+        }
+        addButton(String(page), page, { active: page === state.page, aria: `Page ${page}` });
+      });
+
+      addButton("Next ›", state.page + 1, { disabled: state.page === totalPages, aria: "Next page" });
+    }
+
+    function setTopic(topic: string) {
+      state.topic = topic;
+      state.page = 1;
+      render(false, true);
+    }
+
+    chips.forEach((chip) => chip.addEventListener("click", () => setTopic(chip.dataset.topic || "all")));
+
+    search.addEventListener("input", () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        state.query = search.value.trim();
+        state.page = 1;
+        render(false, true);
+      }, 150);
+    });
+
+    sort.addEventListener("change", () => {
+      state.sort = sort.value;
+      state.page = 1;
+      render(false, true);
+    });
+
+    document.getElementById("news-reset")?.addEventListener("click", () => {
+      search.value = "";
+      state.query = "";
+      sort.value = "newest";
+      state.sort = "newest";
+      setTopic("all");
+    });
+
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => items.filter((item) => !item.hidden).forEach(measureCollapsible), 150);
+    }, { signal: controller.signal });
+
+    render();
+  }
+
+  document.addEventListener("astro:page-load", initNews);
+</script>

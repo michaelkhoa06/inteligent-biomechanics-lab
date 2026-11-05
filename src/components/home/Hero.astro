@@ -1,0 +1,202 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+const heroDir = path.resolve(process.cwd(), "public/assets/images/hero");
+const imageExt = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
+
+// The latest added photo has no date in its filename.
+const newestImage = "pu-yuli.jpeg";
+
+const heroImages = fs.existsSync(heroDir)
+  ? fs
+      .readdirSync(heroDir, { withFileTypes: true })
+      .filter(
+        (entry) =>
+          entry.isFile() && imageExt.has(path.extname(entry.name).toLowerCase())
+      )
+      .sort((a, b) => {
+        if (a.name === newestImage) return -1;
+        if (b.name === newestImage) return 1;
+        return b.name.localeCompare(a.name);
+      })
+      .map((entry) => `/assets/images/hero/${encodeURIComponent(entry.name)}`)
+  : [];
+---
+
+<section id="hero-2150">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">Welcome to the</span>
+            <h1 class="cs-title">Intelligent Biomechanics Lab</h1>
+            <p class="cs-text">
+                The Intelligent Biomechanics Lab, where biomechanics meets artificial intelligence.
+            </p>
+            <a href="/contact" class="cs-button-solid cs-button1">Learn more from us</a>
+        </div>
+        <ul class="cs-card-group">
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+        </ul>
+    </div>
+    <!-- Background Slideshow -->
+    <div class="cs-background">
+      {heroImages.length > 0 ? (
+        <div
+          class="cs-slideshow"
+          data-hero-slideshow
+          data-interval="20000"
+          data-slide-count={heroImages.length}
+          data-landscape-ratio="1.15"
+        >
+          <div class="cs-track" aria-live="polite">
+            {heroImages.map((src) => (
+              <div class="cs-slide-frame">
+                <img
+                  src={src}
+                  alt=""
+                  class="cs-slide-bg"
+                  loading="eager"
+                  decoding="async"
+                  aria-hidden="true"
+                />
+                <img
+                  src={src}
+                  alt=""
+                  class="cs-slide"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+    {heroImages.length > 1 ? (
+      <div class="cs-slideshow-controls">
+              <button
+                type="button"
+                class="cs-slideshow-btn cs-slideshow-prev"
+                aria-label="Previous slide"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="cs-slideshow-btn cs-slideshow-next"
+                aria-label="Next slide"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="m10 6-1.41 1.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+              </button>
+      </div>
+    ) : null}
+</section>
+
+<style lang="less">
+  @import "../../styles/home/hero.less";
+</style>
+
+<script>
+  function classifyHeroSlideFrame(frame: Element, landscapeMinRatio: number) {
+    const img = frame.querySelector(".cs-slide");
+    if (!(img instanceof HTMLImageElement)) return;
+
+    const apply = () => {
+      const { naturalWidth, naturalHeight } = img;
+      if (!naturalWidth || !naturalHeight) return;
+      const aspectRatio = naturalWidth / naturalHeight;
+      const isLandscape = aspectRatio >= landscapeMinRatio;
+      frame.classList.toggle("is-landscape", isLandscape);
+      frame.classList.toggle("is-portrait", !isLandscape);
+    };
+
+    if (img.complete) apply();
+    else img.addEventListener("load", apply, { once: true });
+  }
+
+  function initHeroSlideshow() {
+    document.querySelectorAll("[data-hero-slideshow]").forEach((root) => {
+      if (root instanceof HTMLElement && root.dataset.heroInit === "true") return;
+
+      const track = root.querySelector(".cs-track");
+      const slides = root.querySelectorAll(".cs-slide-frame");
+      const heroSection = root.closest("#hero-2150");
+      const prevBtn = heroSection?.querySelector(".cs-slideshow-prev");
+      const nextBtn = heroSection?.querySelector(".cs-slideshow-next");
+      if (!(track instanceof HTMLElement) || slides.length === 0) return;
+
+      const landscapeMinRatio = Number.parseFloat(
+        root.getAttribute("data-landscape-ratio") || "1.15"
+      );
+      slides.forEach((frame) =>
+        classifyHeroSlideFrame(frame, landscapeMinRatio)
+      );
+
+      if (root instanceof HTMLElement) root.dataset.heroInit = "true";
+
+      const intervalMs = Number.parseInt(root.dataset.interval || "20000", 10);
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      let index = 0;
+      let timer: ReturnType<typeof setInterval> | null = null;
+
+      const goTo = (nextIndex: number) => {
+        index = ((nextIndex % slides.length) + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+      };
+
+      const next = () => goTo(index + 1);
+      const prev = () => goTo(index - 1);
+
+      const resetTimer = () => {
+        if (timer) clearInterval(timer);
+        if (slides.length > 1 && !prefersReducedMotion) {
+          timer = setInterval(next, intervalMs);
+        }
+      };
+
+      prevBtn?.addEventListener("click", () => {
+        prev();
+        resetTimer();
+      });
+      nextBtn?.addEventListener("click", () => {
+        next();
+        resetTimer();
+      });
+
+      goTo(0);
+      resetTimer();
+    });
+  }
+
+  initHeroSlideshow();
+  document.addEventListener("astro:after-swap", initHeroSlideshow);
+</script>

@@ -22,3 +22,7 @@ The website introduces our team, research projects, publications, lab news, and 
 **Dr. Lei Shi** · [lshi@kennesaw.edu](mailto:lshi@kennesaw.edu)
 
 Kennesaw State University · Marietta, Georgia, USA
+
+---
+
+For website setup, content updates, and deployment, see the [development and maintenance guide](docs/DEVELOPMENT.md).

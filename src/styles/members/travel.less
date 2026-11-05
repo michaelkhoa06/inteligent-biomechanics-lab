@@ -1,0 +1,327 @@
+#member-profile:where([data-member-style="travel"]) {
+    padding-top: 8rem;
+    padding-bottom: var(--sectionPadding);
+
+    .cs-container {
+      width: 100%;
+      max-width: (1280/16rem);
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: (32/16rem);
+    }
+
+    .cs-breadcrumbs {
+      font-size: (14/16rem);
+      line-height: 1.5em;
+      color: var(--bodyTextColor);
+
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      span {
+        margin: 0 (6/16rem);
+      }
+    }
+
+    .cs-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (24/16rem);
+      align-items: start;
+    }
+
+    .cs-image-group {
+      width: 100%;
+      max-width: (420/16rem);
+    }
+
+    .cs-profile-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: (16/16rem);
+      border: 1px solid #e8e8e8;
+      object-fit: cover;
+    }
+
+    .cs-hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: (12/16rem);
+    }
+
+    .cs-topper {
+      font-size: (14/16rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .cs-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.1em;
+      margin: 0;
+      color: var(--headerColor);
+    }
+
+    .cs-role {
+      font-size: (20/16rem);
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .cs-short-bio {
+      font-size: (16/16rem);
+      line-height: 1.7em;
+      margin: 0;
+      color: var(--bodyTextColor);
+      max-width: 48rem;
+    }
+
+    .cs-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (12/16rem);
+      margin-top: (8/16rem);
+    }
+
+    .cs-meta-item {
+      padding: (16/16rem);
+      border: 1px solid #e8e8e8;
+      border-radius: (12/16rem);
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: (4/16rem);
+    }
+
+    .cs-meta-label {
+      font-size: (13/16rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--bodyTextColor);
+    }
+
+    .cs-meta-value {
+      font-size: (16/16rem);
+      line-height: 1.5em;
+      color: var(--headerColor);
+      text-decoration: none;
+    }
+
+    .cs-main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (24/16rem);
+    }
+
+    .cs-main-content {
+      display: flex;
+      flex-direction: column;
+      gap: (24/16rem);
+    }
+
+    .cs-section-card,
+    .cs-sidebar-card {
+      border: 1px solid #e8e8e8;
+      border-radius: (16/16rem);
+      padding: (24/16rem);
+      background-color: #fff;
+    }
+
+    .cs-section-card h2,
+    .cs-sidebar-card h3,
+    .cs-cv-card h3,
+    .cs-location-card h3 {
+      margin-top: 0;
+      color: var(--headerColor);
+    }
+
+    .cs-section-card p,
+    .cs-sidebar-card p {
+      line-height: 1.7em;
+      color: var(--bodyTextColor);
+    }
+
+    .cs-list {
+      margin: 0;
+      padding-left: 1.25rem;
+
+      li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6em;
+        color: var(--bodyTextColor);
+      }
+    }
+
+    .cs-cv-grid,
+    .cs-location-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (16/16rem);
+    }
+
+    .cs-cv-card,
+    .cs-location-card {
+      border: 1px solid #ececec;
+      border-radius: (12/16rem);
+      padding: (18/16rem);
+      background: #fafafa;
+    }
+
+    .cs-map-note {
+      margin-bottom: (16/16rem);
+    }
+
+    .cs-map-placeholder {
+      min-height: (280/16rem);
+      border: 2px dashed #cfcfcf;
+      border-radius: (16/16rem);
+      background: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: (20/16rem);
+      padding: (24/16rem);
+      box-sizing: border-box;
+    }
+
+    .cs-map-placeholder-inner p {
+      margin: (8/16rem) 0 0 0;
+    }
+
+    .cs-map-section {
+      h2 {
+        margin-bottom: (16/16rem);
+      }
+    }
+
+    .cs-map-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: (12/16rem);
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      background: #e8f4f0;
+      margin-bottom: (16/16rem);
+    }
+
+    #cs-map-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    #cs-map-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: (8/16rem);
+      padding: (7/16rem) (12/16rem);
+      font-size: (12/16rem);
+      color: var(--bodyTextColor);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .cs-place-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: (10/16rem);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: (6/16rem);
+        font-size: (13/16rem);
+        color: var(--bodyTextColor);
+      }
+    }
+
+    .cs-chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e02020;
+    }
+
+    .cs-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: (24/16rem);
+    }
+
+    .cs-facts-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: (14/16rem);
+
+      li {
+        display: flex;
+        flex-direction: column;
+        gap: (4/16rem);
+      }
+
+      span {
+        font-size: (13/16rem);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--bodyTextColor);
+      }
+
+      strong {
+        color: var(--headerColor);
+      }
+    }
+  }
+
+  @media only screen and (min-width: 48rem) {
+    #member-profile:where([data-member-style="travel"]) {
+      .cs-hero {
+        grid-template-columns: minmax(18rem, 26rem) 1fr;
+        gap: (32/16rem);
+      }
+
+      .cs-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cs-cv-grid,
+      .cs-location-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  @media only screen and (min-width: 64rem) {
+    #member-profile:where([data-member-style="travel"]) {
+      .cs-main-grid {
+        grid-template-columns: minmax(0, 2fr) minmax(18rem, 22rem);
+        align-items: start;
+      }
+
+      .cs-sidebar {
+        position: sticky;
+        top: 6rem;
+      }
+
+      .cs-location-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }

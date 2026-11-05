@@ -1,0 +1,15 @@
+---
+import profiles from "@data/members";
+import StandardProfile from "@components/members/StandardProfile.astro";
+import LinkedProfile from "@components/members/LinkedProfile.astro";
+import StackedProfile from "@components/members/StackedProfile.astro";
+
+export function getStaticPaths() {
+  return profiles.map(({ slug, ...props }) => ({ params: { slug }, props }));
+}
+
+const templates = { standard: StandardProfile, linked: LinkedProfile, stacked: StackedProfile };
+const Profile = templates[Astro.props.template];
+---
+
+<Profile {...Astro.props} />

@@ -1,0 +1,166 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+const { member, styleVariant, scaledTooltip = false, hideEmptyCv = false } = Astro.props;
+---
+
+<BaseLayout
+  title={`${member.fullName} | Intelligent Biomechanics Lab`}
+  description={`${member.fullName} profile page for the Intelligent Biomechanics Lab.`}
+>
+  <section id="member-profile" data-member-style={styleVariant}>
+    <div class="cs-container">
+
+      <div class="cs-hero">
+        <div class="cs-image-group">
+          <img
+            class="cs-profile-image"
+            src={member.image}
+            alt={member.fullName}
+            width="500"
+            height="600"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="cs-hero-content">
+          <span class="cs-topper">Team Member Profile</span>
+          <h1 class="cs-title">{member.fullName}</h1>
+          <p class="cs-role">{member.role}</p>
+          <p class="cs-short-bio">{member.shortBio}</p>
+
+          <div class="cs-meta">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Lab</span>
+              <span class="cs-meta-value">{member.department}</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">{member.role}</span>
+            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-main-grid">
+        <div class="cs-main-content">
+
+          <section class="cs-section-card">
+            <h2>Introduction</h2>
+            <p>{member.introduction}</p>
+          </section>
+
+          <section class="cs-section-card">
+            <h2>Academic Experience</h2>
+            <br>
+            <ul class="cs-list">
+              {member.academicExperience.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="cs-section-card">
+            <h2>Work Experience</h2>
+            <br>
+            <ul class="cs-list">
+              {member.workExperience.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          {(!hideEmptyCv || member.cvSections.some((section) => section.items.length > 0)) && (
+            <section class="cs-section-card">
+              <h2>CV Overview</h2>
+              <br>
+              <div class="cs-cv-grid">
+                {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
+                  <div class="cs-cv-card">
+                    <h3>{section.title}</h3>
+                    <ul class="cs-list">
+                      {section.items.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <!-- Quick Facts -->
+          <div class="cs-sidebar-card">
+            <h3>Quick Facts:</h3>
+            <br>
+            <ul class="cs-facts-list">
+              <li>
+                <span>Name</span>
+                <strong>{member.fullName}</strong>
+              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          <!-- ── Travel Map ── -->
+          <section class="cs-section-card cs-map-section">
+            <h2>Places Visited</h2>
+            <br>
+
+            <div class="cs-map-wrap" id="cs-map-wrap">
+              <canvas id="cs-map-canvas" data-places={JSON.stringify(member.locations.traveled)} data-scaled-tooltip={scaledTooltip}></canvas>
+              <div id="cs-map-tooltip" role="tooltip">
+                <strong id="cs-tt-name"></strong>
+                <span id="cs-tt-info"></span>
+              </div>
+              {member.locations.traveled.length === 0 && (
+                <div class="cs-map-empty">
+                  <span>No locations yet</span>
+                </div>
+              )}
+            </div>
+
+            {member.locations.traveled.length > 0 && (
+              <ul class="cs-place-chips">
+                {member.locations.traveled.map((p) => (
+                  <li class="cs-place-chip">
+                    <span class="cs-chip-dot"></span>
+                    {p.name}{p.label ? ` — ${p.label}` : ""}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <br>
+          <br>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="less">
+  @import "../../styles/members/stacked.less";
+</style>
+
+<script src="@scripts/member-map.js"></script>
